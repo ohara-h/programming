@@ -39,8 +39,8 @@
             
             <br>
             
-            <input type="radio" name="gender" value=0 checked>男
-            <input type="radio" name="gender" value=1>女
+            <input type="radio" name="gender" value="男" checked>男
+            <input type="radio" name="gender" value="女">女
             
             <br>
             
@@ -115,8 +115,8 @@
             
             <label>アカウント権限</label>
             <select name="authority">
-                <option value=0>一般</option>
-                <option value=1>管理者</option>
+                <option value="一般">一般</option>
+                <option value="管理者">管理者</option>
             </select>
             
             <br>
