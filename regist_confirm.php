@@ -7,60 +7,76 @@
     </head>
     
     <body>
-        <h1>アカウント登録確認画面</h1>
+        <header>
+            <div class="box1">
+                <ul class="ul1">
+                    <li class="li1">トップ</li>
+                    <li class="li3">プロフィール</li>
+                    <li class="li3">D.I.Blogについて</li>
+                    <li class="li3">登録フォーム</li>
+                    <li class="li3">問い合わせ</li>
+                    <li class="li3">アカウント登録</li>
+                    <li class="li2">その他</li>
+                </ul>
+            </div>
+        </header>
         
-        <p>名前(姓)  <?php echo $_POST['family_name']; ?></p>
+        <div id="title">アカウント登録確認画面</div>
         
-        <br>
+        <div id="box">
+            <label>名前(姓)</label>  <div id="right"><?php echo $_POST['family_name']; ?></div>
         
-        <p>名前(名)  <?php echo $_POST['last_name']; ?></p>
+            <br>
         
-        <br>
+            <label>名前(名)</label>  <div id="right"><?php echo $_POST['last_name']; ?></div>
         
-        <p>カナ(姓)  <?php echo $_POST['family_name_kana']; ?></p>
+            <br>
         
-        <br>
+            <label>カナ(姓)</label>  <div id="right"><?php echo $_POST['family_name_kana']; ?></div>
         
-        <p>カナ(名)  <?php echo $_POST['last_name_kana']; ?></p>
+            <br>
         
-        <br>
+            <label>カナ(名)</label>  <div id="right"><?php echo $_POST['last_name_kana']; ?></div>
         
-        <p>メールアドレス  <?php echo $_POST['mail']; ?></p>
+            <br>
         
-        <br>
+            <label>メールアドレス</label>  <div id="right"><?php echo $_POST['mail']; ?></div>
         
-        <p>パスワード  <?php echo $_POST['password']; ?></p>
+            <br>
         
-        <br>
+            <label>パスワード</label>  <div id="right"><?php echo $_POST['password']; ?></div>
         
-        <p>性別  <?php echo $_POST['gender']; ?></p>
+            <br>
         
-        <br>
+            <label>性別</label>  <div id="right"><?php echo $_POST['gender']; ?></div>
         
-        <p>郵便番号  <?php echo $_POST['postal_code']; ?></p>
+            <br>
         
-        <br>
+            <label>郵便番号</label>  <div id="right"><?php echo $_POST['postal_code']; ?></div>
         
-        <p>住所(都道府県)  <?php echo $_POST['prefecture']; ?></p>
+            <br>
         
-        <br>
+            <label>住所(都道府県)</label>  <div id="right"><?php echo $_POST['prefecture']; ?></div>
         
-        <p>住所(市区町村)  <?php echo $_POST['address_1']; ?></p>
+            <br>
         
-        <br>
+            <label>住所(市区町村)</label>  <div id="right"><?php echo $_POST['address_1']; ?></div>
         
-        <p>住所(番地)  <?php echo $_POST['address_2']; ?></p>
+            <br>
         
-        <br>
+            <label>住所(番地)</label>  <div id="right"><?php echo $_POST['address_2']; ?></div>
         
-        <p>アカウント権限  <?php echo $_POST['authority']; ?></p>
+            <br>
+        
+            <label>アカウント権限</label>  <div id="right"><?php echo $_POST['authority']; ?></div>
+        </div>
         
         <form action="regist.php">
-            <input type="submit" class="button" value="前に戻る">
+            <input type="submit" class="submit" value="前に戻る">
         </form>
         
         <form method="post" action="regist_complete.php">
-            <input type="submit" class="button" value="登録する">
+            <input type="submit" class="submit2" value="登録する">
             <input type="hidden" value="<?php echo $_POST['family_name']; ?>" name="family_name">
             <input type="hidden" value="<?php echo $_POST['last_name']; ?>" name="last_name">
             <input type="hidden" value="<?php echo $_POST['family_name_kana']; ?>" name="family_name_kana">
@@ -74,5 +90,9 @@
             <input type="hidden" value="<?php echo $_POST['address_2']; ?>" name="address_2">
             <input type="hidden" value="<?php echo $_POST['authority']; ?>" name="authority">
         </form>
+        
+        <footer>
+            <div class="box3">Copyright D.I.works| D.I.blog is the one which provides A to Z about programming</div>
+        </footer>
     </body>
 </html>

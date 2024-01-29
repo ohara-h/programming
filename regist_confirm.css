@@ -4,7 +4,7 @@
     font-size:30px;
 }
 
-form{
+#box{
     margin:0 auto;
     width:50%;
 }
@@ -15,7 +15,7 @@ label{
     top:22px;
 }
 
-#left{
+#right{
     width:50%;
     margin:0 0 0 auto;
     padding-right:100px;
@@ -23,10 +23,19 @@ label{
 
 .submit{
     text-align:center;
-    width:40%;
+    width:15%;
     height:50px;
-    margin-left:110px;
     margin-top:40px;
+    margin-left:260px;
+    float:left;
+}
+
+.submit2{
+    text-align:center;
+    width:15%;
+    height:50px;
+    margin-top:40px;
+    margin-left:100px;
 }
 
 .box1{background-color:black;
@@ -65,6 +74,5 @@ label{
       line-height:40px;
       text-align:center;
       margin:0 auto;
+      margin-top:30px;
 }
-
-

@@ -7,6 +7,20 @@
     </head>
     
     <body>
+        <header>
+            <div class="box1">
+                <ul class="ul1">
+                    <li class="li1">トップ</li>
+                    <li class="li3">プロフィール</li>
+                    <li class="li3">D.I.Blogについて</li>
+                    <li class="li3">登録フォーム</li>
+                    <li class="li3">問い合わせ</li>
+                    <li class="li3">アカウント登録</li>
+                    <li class="li2">その他</li>
+                </ul>
+            </div>
+        </header>
+        
         <div id ="title">アカウント登録画面</div>
         
         <form method="post" action="regist_confirm.php">
@@ -154,5 +168,9 @@
             <br>
             
         </form>
+        
+        <footer>
+            <div class="box3">Copyright D.I.works| D.I.blog is the one which provides A to Z about programming</div>
+        </footer>
     </body>
 </html>
