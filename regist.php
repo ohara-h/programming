@@ -26,42 +26,42 @@
         <form method="post" action="regist_confirm.php">
             <div>
                 <label>名前(姓)</label>
-                <div id="left"><input type="text" class="text" name="family_name"></div>
+                <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u4E00-\u9FFF\u3040-\u309F‾]*" name="family_name"></div>
             </div>
             
             <br>
             
             <div>
                 <label>名前(名)</label>
-                <div id="left"><input type="text" class="text" name="last_name"></div>
+                <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u4E00-\u9FFF\u3040-\u309F‾]*" name="last_name"></div>
             </div>
                 
             <br>
             
             <div>
                 <label>カナ(姓)</label>
-                <div id="left"><input type="text" class="text" name="family_name_kana"></div>
+                <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u30A1-\u30F6]*" name="family_name_kana"></div>
             </div>
                 
             <br>
             
             <div>
                 <label>カナ(名)</label>
-                <div id="left"><input type="text" class="text" name="last_name_kana"></div>
+                <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u30A1-\u30F6]*" name="last_name_kana"></div>
             </div>
                 
             <br>
             
             <div>
                 <label>メールアドレス</label>
-                <div id="left"><input type="text" class="text" name="mail"></div>
+                <div id="left"><input type="text" class="text" maxlength="100" pattern="^[0-9A-Za-z@,-.]+$"name="mail"></div>
             </div>
                 
             <br>
             
             <div>
                 <label>パスワード</label>
-                <div id="left"><input type="password" class="text" name="password"></div>
+                <div id="left"><input type="password" class="text" maxlength="10" pattern="^[a-zA-Z0-9]+$" name="password"></div>
             </div>
                 
             <br>
@@ -76,7 +76,7 @@
             
             <div>
                 <label>郵便番号</label>
-                <div id="left"><input type="text" class="text" name="postal_code"></div>
+                <div id="left"><input type="text" class="text" maxlength="7" pattern="^[0-9]+$" name="postal_code"></div>
             </div>
                 
             <br>
@@ -139,14 +139,14 @@
             
             <div>
                 <label>都道府県(市区町村)</label>
-                <div id="left"><input type="text" class="text" name="address_1"></div>
+                <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u4E00-\u9FFF\u3040-\u309F‾\u03A1-\u30F6\0-9,-. ]*" name="address_1"></div>
             </div>
                 
             <br>
             
             <div>
                 <label>都道府県(番地)</label>
-                <div id="left"><input type="text" class="text" name="address_2"></div>
+                <div id="left"><input type="text" class="text" maxlength="100" pattern="[\u4E00-\u9FFF\u3040-\u309F‾\u03A1-\u30F6\0-9,-. ]*" name="address_2"></div>
             </div>
                 
             <br>

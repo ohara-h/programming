@@ -18,11 +18,29 @@ $pdo->exec("insert into registration(family_name,last_name,family_name_kana,last
     </head>
     
     <body>
-        <p>アカウント登録完了画面</p>
+        <header>
+            <div class="box1">
+                <ul class="ul1">
+                    <li class="li1">トップ</li>
+                    <li class="li3">プロフィール</li>
+                    <li class="li3">D.I.Blogについて</li>
+                    <li class="li3">登録フォーム</li>
+                    <li class="li3">問い合わせ</li>
+                    <li class="li3">アカウント登録</li>
+                    <li class="li2">その他</li>
+                </ul>
+            </div>
+        </header>
+        
+        <div id="title">アカウント登録完了画面</div>
         <h1>登録完了しました</h1>
         
         <form action="diblog.html">
-            <input type="submit" value="TOPページへ戻る">
+            <input type="submit"  class="submit" value="TOPページへ戻る">
         </form>
+        
+        <footer>
+            <div class="box3">Copyright D.I.works| D.I.blog is the one which provides A to Z about programming</div>
+        </footer>
     </body>
 </html>
