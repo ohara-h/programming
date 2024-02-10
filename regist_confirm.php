@@ -71,6 +71,20 @@
             <label>アカウント権限</label>  <div id="right"><?php echo $_POST['authority']; ?></div>
         </div>
         
+        <?php
+            if($_POST['gender'] == "男"){
+                $_POST['gender'] = 0;
+            }else{
+                $_POST['gender'] = 1;
+            }
+        
+            if($_POST['authority'] == "一般"){
+                $_POST['authority'] = 0;
+            }else{
+                $_POST['authority'] = 1;
+            }
+        ?>
+        
         <form action="regist.php">
             <input type="submit" class="submit" value="前に戻る">
         </form>
