@@ -86,7 +86,7 @@
         ?>
         
         <form action="regist.php">
-            <input type="submit" class="submit" value="前に戻る">
+            <button type="button" onClick=history.back() class="submit">前に戻る</button>
         </form>
         
         <form method="post" action="regist_complete.php">
