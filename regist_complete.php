@@ -1,5 +1,7 @@
 <?php
 
+ini_set('display_errors',0);
+
 $dsn='mysql:dbname=lesson1; host=localhost';
 $user='root';
 $password='';

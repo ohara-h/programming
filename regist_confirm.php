@@ -21,6 +21,10 @@
             </div>
         </header>
         
+        <?php
+            $maskedPass = substr_replace($_POST['password'],str_repeat("●",strlen($_POST['password'])),0,strlen($_POST['password']));
+        ?>
+        
         <div id="title">アカウント登録確認画面</div>
         
         <div id="box">
@@ -44,7 +48,7 @@
         
             <br>
         
-            <label>パスワード</label>  <div id="right"><?php echo $_POST['password']; ?></div>
+            <label>パスワード</label>  <div id="right"><?php echo $maskedPass; ?></div>
         
             <br>
         

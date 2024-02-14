@@ -58,7 +58,7 @@
             
             <div>
                 <label>メールアドレス</label>
-                <div id="left"><input type="text" class="text" maxlength="100" pattern="^[0-9A-Za-z@,-.]+$"name="mail"></div>
+                <div id="left"><input type="text" class="text" maxlength="100" pattern="^[0-9A-Za-z@\-]+$"name="mail"></div>
                 <div id="err5"></div>
             </div>
                 
@@ -147,7 +147,7 @@
             
             <div>
                 <label>都道府県(市区町村)</label>
-                <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u4E00-\u9FFF\u3040-\u309F‾\u03A1-\u30F6\0-9,-. ]*" name="address_1"></div>
+                <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u3040-\u309F\u4E00-\u9FAF0-9\u30A0-\u30FF\u30FC\s\-]+" name="address_1"></div>
                 <div id="err9"></div>
             </div>
                 
@@ -155,7 +155,7 @@
             
             <div>
                 <label>都道府県(番地)</label>
-                <div id="left"><input type="text" class="text" maxlength="100" pattern="[\u4E00-\u9FFF\u3040-\u309F‾\u03A1-\u30F6\0-9,-. ]*" name="address_2"></div>
+                <div id="left"><input type="text" class="text" maxlength="100" pattern="[\u3040-\u309F\u4E00-\u9FAF0-9\u30A0-\u30FF\u30FC\s\-]+" name="address_2"></div>
                 <div id="err10"></div>
             </div>
                 
@@ -180,7 +180,7 @@
         </form>
         
         <script type="text/javascript">
-            function check1(){
+            //function check1(){
                 if(register.family_name.value == ""){
                     let err1 = document.getElementById("err1");
                     err1.innerHTML = "名前(姓)が未入力です";
