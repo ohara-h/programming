@@ -172,7 +172,7 @@
             <br>
             
             <div>
-                <input type="submit" class="submit" onClick="return check1();" value="確認する">
+                <input type="submit" class="submit" onClick="return runAllFunctions();" value="確認する">
             </div>
             
             <br>
@@ -180,70 +180,128 @@
         </form>
         
         <script type="text/javascript">
-            //function check1(){
-                if(register.family_name.value == ""){
-                    let err1 = document.getElementById("err1");
-                    err1.innerHTML = "名前(姓)が未入力です";
-                    err1.style.color="red";
-                    err1.style.marginLeft="60px";
-                    return false;
-                }else if(register.last_name.value == ""){
-                    let err2 = document.getElementById("err2");
-                    err2.innerHTML = "名前(名)が未入力です";
-                    err2.style.color="red";
-                    err2.style.marginLeft="60px";
-                    return false;
-                }else if(register.family_name_kana.value == ""){
-                    let err3 = document.getElementById("err3");
-                    err3.innerHTML = "カナ(姓)が未入力です";
-                    err3.style.color="red";
-                    err3.style.marginLeft="60px";
-                    return false;
-                }else if(register.last_name_kana.value == ""){
-                    let err4 = document.getElementById("err4");
-                    err4.innerHTML = "カナ(名)が未入力です";
-                    err4.style.color="red";
-                    err4.style.marginLeft="60px";
-                    return false;
-                }else if(register.mail.value == ""){
-                    let err5 = document.getElementById("err5");
-                    err5.innerHTML = "メールアドレスが未入力です";
-                    err5.style.color="red";
-                    err5.style.marginLeft="60px";
-                    return false;
-                }else if(register.password.value == ""){
-                    let err6 = document.getElementById("err6");
-                    err6.innerHTML = "パスワードが未入力です";
-                    err6.style.color="red";
-                    err6.style.marginLeft="60px";
-                    return false;
-                }else if(register.postal_code.value == ""){
-                    let err7 = document.getElementById("err7");
-                    err7.innerHTML = "郵便番号が未入力です";
-                    err7.style.color="red";
-                    err7.style.marginLeft="60px";
-                    return false;
-                }else if(register.prefecture.value == ""){
-                    let err8 = document.getElementById("err8");
-                    err8.innerHTML = "住所(都道府県)が未選択です";
-                    err8.style.color="red";
-                    err8.style.marginLeft="60px";
-                    return false;
-                }else if(register.address_1.value == ""){
-                    let err9 = document.getElementById("err9");
-                    err9.innerHTML = "都道府県(市区町村)が未入力です";
-                    err9.style.color="red";
-                    err9.style.marginLeft="60px";
-                    return false;
-                }else if(register.address_2.value == ""){
-                    let err10 = document.getElementById("err10");
-                    err10.innerHTML = "都道府県(番地)が未入力です";
-                    err10.style.color="red";
-                    err10.style.marginLeft="60px";
-                    return false;
-                }else{
-                    return true;
+                function check1(){
+                    if(register.family_name.value == ""){
+                        let err1 = document.getElementById("err1");
+                        err1.innerHTML = "名前(姓)が未入力です";
+                        err1.style.color="red";
+                        err1.style.marginLeft="60px";
+                        return false;
+                    }else{
+                        return true;
+                    }
                 }
+            
+                function check2(){
+                    if(register.last_name.value == ""){
+                        let err2 = document.getElementById("err2");
+                        err2.innerHTML = "名前(名)が未入力です";
+                        err2.style.color="red";
+                        err2.style.marginLeft="60px";
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            
+                function check3(){
+                    if(register.family_name_kana.value == ""){
+                        let err3 = document.getElementById("err3");
+                        err3.innerHTML = "カナ(姓)が未入力です";
+                        err3.style.color="red";
+                        err3.style.marginLeft="60px";
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            
+                function check4(){
+                    if(register.last_name_kana.value == ""){
+                        let err4 = document.getElementById("err4");
+                        err4.innerHTML = "カナ(名)が未入力です";
+                        err4.style.color="red";
+                        err4.style.marginLeft="60px";
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            
+                function check5(){
+                    if(register.mail.value == ""){
+                        let err5 = document.getElementById("err5");
+                        err5.innerHTML = "メールアドレスが未入力です";
+                        err5.style.color="red";
+                        err5.style.marginLeft="60px";
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            
+                function check6(){
+                    if(register.password.value == ""){
+                        let err6 = document.getElementById("err6");
+                        err6.innerHTML = "パスワードが未入力です";
+                        err6.style.color="red";
+                        err6.style.marginLeft="60px";
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            
+                function check7(){
+                    if(register.postal_code.value == ""){
+                        let err7 = document.getElementById("err7");
+                        err7.innerHTML = "郵便番号が未入力です";
+                        err7.style.color="red";
+                        err7.style.marginLeft="60px";
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            
+                function check8(){
+                    if(register.prefecture.value == ""){
+                        let err8 = document.getElementById("err8");
+                        err8.innerHTML = "住所(都道府県)が未選択です";
+                        err8.style.color="red";
+                        err8.style.marginLeft="60px";
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            
+                function check9(){
+                    if(register.address_1.value == ""){
+                        let err9 = document.getElementById("err9");
+                        err9.innerHTML = "都道府県(市区町村)が未入力です";
+                        err9.style.color="red";
+                        err9.style.marginLeft="60px";
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            
+                function check10(){
+                    if(register.address_2.value == ""){
+                        let err10 = document.getElementById("err10");
+                        err10.innerHTML = "都道府県(番地)が未入力です";
+                        err10.style.color="red";
+                        err10.style.marginLeft="60px";
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            
+            function runAllFunctions(){
+                return check1() && check2() && check3() && check4() && check5() && check6() && check7() && check8() && check9() && check10();
             }
         </script>
         
