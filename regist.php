@@ -186,9 +186,7 @@
                         err1.innerHTML = "名前(姓)が未入力です";
                         err1.style.color="red";
                         err1.style.marginLeft="60px";
-                        return false;
-                    }else{
-                        return true;
+                        return 1;
                     }
                 }
             
@@ -198,9 +196,7 @@
                         err2.innerHTML = "名前(名)が未入力です";
                         err2.style.color="red";
                         err2.style.marginLeft="60px";
-                        return false;
-                    }else{
-                        return true;
+                        return 1;
                     }
                 }
             
@@ -210,9 +206,7 @@
                         err3.innerHTML = "カナ(姓)が未入力です";
                         err3.style.color="red";
                         err3.style.marginLeft="60px";
-                        return false;
-                    }else{
-                        return true;
+                        return 1;
                     }
                 }
             
@@ -222,9 +216,7 @@
                         err4.innerHTML = "カナ(名)が未入力です";
                         err4.style.color="red";
                         err4.style.marginLeft="60px";
-                        return false;
-                    }else{
-                        return true;
+                        return 1;
                     }
                 }
             
@@ -234,9 +226,7 @@
                         err5.innerHTML = "メールアドレスが未入力です";
                         err5.style.color="red";
                         err5.style.marginLeft="60px";
-                        return false;
-                    }else{
-                        return true;
+                        return 1;
                     }
                 }
             
@@ -246,9 +236,7 @@
                         err6.innerHTML = "パスワードが未入力です";
                         err6.style.color="red";
                         err6.style.marginLeft="60px";
-                        return false;
-                    }else{
-                        return true;
+                        return 1;
                     }
                 }
             
@@ -258,9 +246,7 @@
                         err7.innerHTML = "郵便番号が未入力です";
                         err7.style.color="red";
                         err7.style.marginLeft="60px";
-                        return false;
-                    }else{
-                        return true;
+                        return 1;
                     }
                 }
             
@@ -270,9 +256,7 @@
                         err8.innerHTML = "住所(都道府県)が未選択です";
                         err8.style.color="red";
                         err8.style.marginLeft="60px";
-                        return false;
-                    }else{
-                        return true;
+                        return 1;
                     }
                 }
             
@@ -282,9 +266,7 @@
                         err9.innerHTML = "都道府県(市区町村)が未入力です";
                         err9.style.color="red";
                         err9.style.marginLeft="60px";
-                        return false;
-                    }else{
-                        return true;
+                        return 1;
                     }
                 }
             
@@ -294,14 +276,27 @@
                         err10.innerHTML = "都道府県(番地)が未入力です";
                         err10.style.color="red";
                         err10.style.marginLeft="60px";
-                        return false;
-                    }else{
-                        return true;
+                        return 1;
                     }
                 }
             
             function runAllFunctions(){
-                return check1() && check2() && check3() && check4() && check5() && check6() && check7() && check8() && check9() && check10();
+                check1();
+                check2();
+                check3();
+                check4();
+                check5();
+                check6();
+                check7();
+                check8();
+                check9();
+                check10();
+                
+                if(check1()==1 || check2()==1  || check3()==1 || check4()==1 || check5()==1 || check6()==1 || check7()==1 || check8()==1 || check9()==1 || check10()==1){
+                    return false;
+                }else{
+                    return true;
+                }
             }
         </script>
         

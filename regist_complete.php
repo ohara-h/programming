@@ -12,7 +12,7 @@ try{
     if($dbh == null){
         print('接続に失敗しました。<br>');
     }else{
-        print('接続に成功しました。<br>');
+        print('');
     }
 }catch(Exception $e){
     print"<font color='red'>(エラーが発生したためアカウント登録できません。)</font>";
