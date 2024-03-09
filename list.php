@@ -1,3 +1,13 @@
+<?php
+
+mb_internal_encoding("utf8");
+
+$pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
+
+$stmt = $pdo->query("select * from registration");
+
+?>
+
 <!doctype HTML>
 <html lang = "ja">
     <head>
@@ -22,20 +32,34 @@
             </div>
         </header>
         
-            <ul class="ul2">
-                <li class="li4">ID<br><div>あああ</div><div>いいい</div></li>
-                <li class="li4">名前(姓)<br></li>
-                <li class="li4">名前(名)<br></li>
-                <li class="li4">カナ(姓)<br></li>
-                <li class="li4">カナ(名)<br></li>
-                <li class="li4">メールアドレス<br></li>
-                <li class="li4">性別<br></li>
-                <li class="li4">アカウント権限<br></li>
-                <li class="li4">削除フラグ<br></li>
-                <li class="li4">登録日時<br></li>
-                <li class="li4">更新日時<br></li>
-                <li class="li4">操作<br></li>
-            </ul>
+        <?php
+        
+        while($row = $stmt->fetch()){
+            echo"<ul class='ul2'>";
+                echo"<li class='li4'>ID<br><div>".$row['id']."</div></li>";
+                echo"<li class='li4'>名前(姓)<br><div>".$row['family_name']."</div></li>";
+                echo"<li class='li4'>名前(名)<br><div>".$row['last_name']."</div></li>";
+                echo"<li class='li4'>カナ(姓)<br><div>".$row['family_name_kana']."</div></li>";
+                echo"<li class='li4'>カナ(名)<br><div>".$row['last_name_kana']."</div></li>";
+                echo"<li class='li4'>メールアドレス<br><div>".$row['mail']."</div></li>";
+                echo"<li class='li4'>性別<br><div>".$row['gender']."</div></li>";
+                echo"<li class='li4'>アカウント権限<br><div>".$row['authority']."</div></li>";
+                echo"<li class='li4'>削除フラグ<br><div>".$row['delete_flag']."</div></li>";
+                echo"<li class='li4'>登録日時<br><div>".$row['registered_time']."</div></li>";
+                echo"<li class='li4'>更新日時<br><div>".$row['update_time']."</div></li>";
+                echo"<li class='li4'>操作<br>";
+                    echo"<form action='delete.php'>";
+                        echo"<input type='submit' class='delete' value='削除'>";
+                    echo"</form>";
+                    
+                    echo"<form action='update.php'>";
+                        echo"<input type='submit' class='update' value='更新'>";
+                    echo"</form>";
+                echo"</li>";
+            echo"</ul>";
+        }
+        ?>
+        
         <footer>
             <div class="box3">Copyright D.I.works| D.I.blog is the one which provides A to Z about programming</div>
         </footer>

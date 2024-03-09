@@ -15,7 +15,8 @@
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>
                     <li class="li3">問い合わせ</li>
-                    <li class="li3">アカウント登録</li>
+                    <li class="li3"><a href = "regist.php">アカウント登録</a></li>
+                    <li class="li3"><a href = "list.php">アカウント一覧</a></li>
                     <li class="li2">その他</li>
                 </ul>
             </div>
