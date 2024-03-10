@@ -32,31 +32,66 @@ $stmt = $pdo->query("select * from registration");
             </div>
         </header>
         
+        <h1>アカウント一覧画面</h1>
+        
+        <div class='box'>
+            <div class='info'>ID<br></div>
+            <div class='info'>名前(姓)<br></div>
+            <div class='info'>名前(名)<br></div>
+            <div class='info'>カナ(姓)<br></div>
+            <div class='info'>カナ(名)<br></div>
+            <div class='info'>メールアドレス<br></div>
+            <div class='info'>性別<br></div>
+            <div class='info'>アカウント権限<br></div>
+            <div class='info'>削除フラグ<br></div>
+            <div class='info'>登録日時<br></div>
+            <div class='info'>更新日時<br></div>
+            <div class='info'>操作<br></div>
+        </div>
+        
         <?php
         
         while($row = $stmt->fetch()){
-            echo"<ul class='ul2'>";
-                echo"<li class='li4'>ID<br><div>".$row['id']."</div></li>";
-                echo"<li class='li4'>名前(姓)<br><div>".$row['family_name']."</div></li>";
-                echo"<li class='li4'>名前(名)<br><div>".$row['last_name']."</div></li>";
-                echo"<li class='li4'>カナ(姓)<br><div>".$row['family_name_kana']."</div></li>";
-                echo"<li class='li4'>カナ(名)<br><div>".$row['last_name_kana']."</div></li>";
-                echo"<li class='li4'>メールアドレス<br><div>".$row['mail']."</div></li>";
-                echo"<li class='li4'>性別<br><div>".$row['gender']."</div></li>";
-                echo"<li class='li4'>アカウント権限<br><div>".$row['authority']."</div></li>";
-                echo"<li class='li4'>削除フラグ<br><div>".$row['delete_flag']."</div></li>";
-                echo"<li class='li4'>登録日時<br><div>".$row['registered_time']."</div></li>";
-                echo"<li class='li4'>更新日時<br><div>".$row['update_time']."</div></li>";
-                echo"<li class='li4'>操作<br>";
-                    echo"<form action='delete.php'>";
-                        echo"<input type='submit' class='delete' value='削除'>";
-                    echo"</form>";
+            
+            if($row['gender'] == 0){
+                $gender="男";
+            }else{
+                $gender="女";
+            }
+            
+            if($row['authority'] == 0){
+                $authority="一般";
+            }else{
+                $authority="管理者";
+            }
+            
+            if($row['delete_flag'] == 0){
+                $deleteflag="有効";
+            }else{
+                $deleteflag="無効";
+            }
+                echo "<div class='box'>";
+                    echo "<div class='info'><div>".$row['id']."</div></div>";
+                    echo "<div class='info'><div>".$row['family_name']."</div></div>";
+                    echo "<div class='info'><div>".$row['last_name']."</div></div>";
+                    echo "<div class='info'><div>".$row['family_name_kana']."</div></div>";
+                    echo "<div class='info'><div>".$row['last_name_kana']."</div></div>";
+                    echo "<div class='info'><div>".$row['mail']."</div></div>";
+                    echo "<div class='info'><div>".$gender."</div></div>";
+                    echo "<div class='info'><div>".$authority."</div></div>";
+                    echo "<div class='info'><div>".$deleteflag."</div></div>";
+                    echo "<div class='info'><div>".$row['registered_time']."</div></div>";
+                    echo "<div class='info'><div>".$row['update_time']."</div></div>";
+                    echo "<div class='info'>";
+                        echo "<form action='delete.php'>";
+                            echo "<input type='submit' class='delete' value='削除'>";
+                        echo "</form>";
                     
-                    echo"<form action='update.php'>";
-                        echo"<input type='submit' class='update' value='更新'>";
-                    echo"</form>";
-                echo"</li>";
-            echo"</ul>";
+                        echo "<form action='update.php'>";
+                            echo "<input type='submit' class='update' value='更新'>";
+                        echo "</form>";
+                    echo"</div>";
+                echo "</div>";
         }
         ?>
         

@@ -42,18 +42,19 @@ footer{clear:both;
       margin:0 auto;
 }
 
-.ul2{list-style:none;
-     font-family:serif;
-     font-weight:lighter;
-     line-height:40px;
+.box {width:100%;
+      margin:0 auto;
+     text-align:center;
 }
 
-.li4{float:left;
-     margin-right:25px;
-     border:1px solid black;
-     margin:auto;
+.info{float:left;
+      text-align:center;
+      border:1px solid black;
+      width:8%;
+      height:50px;
 }
 
-li div{
-    border-top:1px solid black;
+.box .info form{
+    float:left;
+    width:50%;
 }
