@@ -4,7 +4,7 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
-$stmt = $pdo->query("select * from registration");
+$stmt = $pdo->query("select * from registration ORDER BY id DESC");
 
 ?>
 
@@ -70,6 +70,10 @@ $stmt = $pdo->query("select * from registration");
             }else{
                 $deleteflag="無効";
             }
+            
+            $registeredtime = date("Y/m/d",strtotime($row['registered_time']));
+            $updatetime = date("Y/m/d",strtotime($row['update_time']));
+            
                 echo "<div class='box'>";
                     echo "<div class='info'><div>".$row['id']."</div></div>";
                     echo "<div class='info'><div>".$row['family_name']."</div></div>";
@@ -80,8 +84,8 @@ $stmt = $pdo->query("select * from registration");
                     echo "<div class='info'><div>".$gender."</div></div>";
                     echo "<div class='info'><div>".$authority."</div></div>";
                     echo "<div class='info'><div>".$deleteflag."</div></div>";
-                    echo "<div class='info'><div>".$row['registered_time']."</div></div>";
-                    echo "<div class='info'><div>".$row['update_time']."</div></div>";
+                    echo "<div class='info'><div>".$registeredtime."</div></div>";
+                    echo "<div class='info'><div>".$updatetime."</div></div>";
                     echo "<div class='info'>";
                         echo "<form action='delete.php'>";
                             echo "<input type='submit' class='delete' value='削除'>";
