@@ -148,7 +148,7 @@
             
             <div>
                 <label>都道府県(市区町村)</label>
-                <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u3040-\u309F\u4E00-\u9FAF0-9\u30A0-\u30FF\u30FC\s\-]+" name="address_1"></div>
+                <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u3040-\u309F\u4E00-\u9FAF0-9\u30A0-\u30FF\u30FC\uFF10-\uFF19\uFF0D\s\-]+" name="address_1"></div>
                 <div id="err9"></div>
             </div>
                 
@@ -156,7 +156,7 @@
             
             <div>
                 <label>都道府県(番地)</label>
-                <div id="left"><input type="text" class="text" maxlength="100" pattern="[\u3040-\u309F\u4E00-\u9FAF0-9\u30A0-\u30FF\u30FC\s\-]+" name="address_2"></div>
+                <div id="left"><input type="text" class="text" maxlength="100" pattern="[\u3040-\u309F\u4E00-\u9FAF0-9\u30A0-\u30FF\u30FC\uFF10-\uFF19\uFF0D\s\-]+" name="address_2"></div>
                 <div id="err10"></div>
             </div>
                 

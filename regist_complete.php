@@ -18,6 +18,14 @@ try{
     }
 }catch(Exception $e){
     print"<font color='red'>エラーが発生したためアカウント登録できません。</font>";
+}catch(Exception $e){
+    print"<font color='red'>エラーが発生したためアカウント登録できません。</font>";
+}catch(ParseException $pe){
+    print"<font color='red'>エラーが発生したためアカウント登録できません。</font>".$pe->getMessage();
+}catch(FatalException $fe){
+    print"<font color='red'>エラーが発生したためアカウント登録できません。</font>".$fe->getMessage();
+}catch(WarningException $we){
+     print"<font color='red'>エラーが発生したためアカウント登録できません。</font>".$we->getMessage();
 }
 
 

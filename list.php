@@ -34,59 +34,64 @@ $stmt = $pdo->query("select * from registration ORDER BY id DESC");
         
         <h1>アカウント一覧画面</h1>
         
-        <div class='box'>
-            <div class='info'>ID<br></div>
-            <div class='info'>名前(姓)<br></div>
-            <div class='info'>名前(名)<br></div>
-            <div class='info'>カナ(姓)<br></div>
-            <div class='info'>カナ(名)<br></div>
-            <div class='info'>メールアドレス<br></div>
-            <div class='info'>性別<br></div>
-            <div class='info'>アカウント権限<br></div>
-            <div class='info'>削除フラグ<br></div>
-            <div class='info'>登録日時<br></div>
-            <div class='info'>更新日時<br></div>
-            <div class='info'>操作<br></div>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名前(姓)</th>
+                    <th>名前(名)</th>
+                    <th>カナ(姓)</th>
+                    <th>カナ(名)</th>
+                    <th>メールアドレス</th>
+                    <th>性別</th>
+                    <th>アカウント権限</th>
+                    <th>削除フラグ</th>
+                    <th>登録日時</th>
+                    <th>更新日時</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                    
+                <?php
         
-        <?php
-        
-        while($row = $stmt->fetch()){
+                while($row = $stmt->fetch()){
             
-            if($row['gender'] == 0){
-                $gender="男";
-            }else{
-                $gender="女";
-            }
+                if($row['gender'] == 0){
+                    $gender="男";
+                }else{
+                    $gender="女";
+                }
             
-            if($row['authority'] == 0){
-                $authority="一般";
-            }else{
-                $authority="管理者";
-            }
+                if($row['authority'] == 0){
+                    $authority="一般";
+                }else{
+                    $authority="管理者";
+                }
             
-            if($row['delete_flag'] == 0){
-                $deleteflag="有効";
-            }else{
-                $deleteflag="無効";
-            }
+                if($row['delete_flag'] == 0){
+                    $deleteflag="有効";
+                }else{
+                    $deleteflag="無効";
+                }
             
-            $registeredtime = date("Y/m/d",strtotime($row['registered_time']));
-            $updatetime = date("Y/m/d",strtotime($row['update_time']));
-            
-                echo "<div class='box'>";
-                    echo "<div class='info'><div>".$row['id']."</div></div>";
-                    echo "<div class='info'><div>".$row['family_name']."</div></div>";
-                    echo "<div class='info'><div>".$row['last_name']."</div></div>";
-                    echo "<div class='info'><div>".$row['family_name_kana']."</div></div>";
-                    echo "<div class='info'><div>".$row['last_name_kana']."</div></div>";
-                    echo "<div class='info'><div>".$row['mail']."</div></div>";
-                    echo "<div class='info'><div>".$gender."</div></div>";
-                    echo "<div class='info'><div>".$authority."</div></div>";
-                    echo "<div class='info'><div>".$deleteflag."</div></div>";
-                    echo "<div class='info'><div>".$registeredtime."</div></div>";
-                    echo "<div class='info'><div>".$updatetime."</div></div>";
-                    echo "<div class='info'>";
+                $registeredtime = date("Y/m/d",strtotime($row['registered_time']));
+                $updatetime = date("Y/m/d",strtotime($row['update_time']));
+                  
+                echo "<tr>";
+                    echo "<td>".$row['id']."</td>";
+                    echo "<td>".$row['family_name']."</td>";
+                    echo "<td>".$row['last_name']."</td>";
+                    echo "<td>".$row['family_name_kana']."</td>";
+                    echo "<td>".$row['last_name_kana']."</td>";
+                    echo "<td>".$row['mail']."</td>";
+                    echo "<td>".$gender."</td>";
+                    echo "<td>".$authority."</td>";
+                    echo "<td>".$deleteflag."</td>";
+                    echo "<td>".$registeredtime."</td>";
+                    echo "<td>".$updatetime."</td>";
+                    echo "<td>";
                         echo "<form action='delete.php'>";
                             echo "<input type='submit' class='delete' value='削除'>";
                         echo "</form>";
@@ -94,10 +99,14 @@ $stmt = $pdo->query("select * from registration ORDER BY id DESC");
                         echo "<form action='update.php'>";
                             echo "<input type='submit' class='update' value='更新'>";
                         echo "</form>";
-                    echo"</div>";
-                echo "</div>";
+                    echo "</td>";
+                echo "<tr>";
         }
         ?>
+            </tbody>
+        </table>
+        
+        
         
         <footer>
             <div class="box3">Copyright D.I.works| D.I.blog is the one which provides A to Z about programming</div>

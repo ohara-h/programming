@@ -42,20 +42,21 @@ footer{clear:both;
       margin:0 auto;
 }
 
-.box {width:100%;
-      margin:0 auto;
-     text-align:center;
+table{
+    table-layout:fixed;
+    width:100%;
+    border-collapse:collapse;
 }
 
-.info{float:left;
-      text-align:center;
-      border:1px solid black;
-      width:8%;
-      height:50px;
+th,td{
+    border:1px solid black;
+    text-align:center;
+    width:8%;
+    height:auto;
+    word-wrap:break-word;
 }
 
-.box .info form{
+td form{
     float:left;
-    width:50%;
+    padding-left:7px;
 }
-
