@@ -71,9 +71,9 @@ $stmt = $pdo->query("select * from registration ORDER BY id DESC");
                 }
             
                 if($row['delete_flag'] == 0){
-                    $deleteflag="有効";
-                }else{
                     $deleteflag="無効";
+                }else{
+                    $deleteflag="有効";
                 }
             
                 $registeredtime = date("Y/m/d",strtotime($row['registered_time']));
@@ -92,12 +92,14 @@ $stmt = $pdo->query("select * from registration ORDER BY id DESC");
                     echo "<td>".$registeredtime."</td>";
                     echo "<td>".$updatetime."</td>";
                     echo "<td>";
-                        echo "<form action='delete.php'>";
+                        echo "<form method='post' action='delete.php'>";
                             echo "<input type='submit' class='delete' value='削除'>";
+                            echo "<input type='hidden' name='number' value='".$row['id']."'>";
                         echo "</form>";
                     
-                        echo "<form action='update.php'>";
+                        echo "<form method='post' action='update.php'>";
                             echo "<input type='submit' class='update' value='更新'>";
+                            echo "<input type='hidden' name='number' value='".$row['id']."'>";
                         echo "</form>";
                     echo "</td>";
                 echo "<tr>";
