@@ -104,7 +104,7 @@ $stmt->execute([$accountid]);
             }
         ?>
         
-        <form action="update.php">
+        <form method="post" action="update.php">
             <button type="button" onClick=history.back() class="submit">前に戻る</button>
         </form>
         

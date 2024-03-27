@@ -17,6 +17,11 @@ $stmt->execute([$accountid]);
     <head>
         <meta charset="utf-8">
         <title>アカウント登録</title>
+        <style>
+            .pass{
+                -webkit-text-security:disc;
+            }
+        </style>
         <link rel ="stylesheet" type="text/css" href="update.css">
     </head>
     
@@ -121,7 +126,7 @@ $stmt->execute([$accountid]);
                 ?>
                 
                 <label>名前(姓)</label>
-                <div id='left'><input type='text' class='text' maxlength='10' pattern='[\u4E00-\u9FFF\u3040-\u309F‾]*' value="<?php echo $familyname; ?>" name="family_name"></div>
+                <div id='left'><input type='text' id='inputValue' class='text' maxlength='10' pattern='[\u4E00-\u9FFF\u3040-\u309F‾]*' value="<?php echo $familyname; ?>" name="family_name"></div>
                 <div id='err1'></div>
             </div>
             
@@ -129,7 +134,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>名前(名)</label>
-                <div id='left'><input type='text' class='text' maxlength='10' pattern='[\u4E00-\u9FFF\u3040-\u309F‾]*' value="<?php echo $lastname; ?>" name='last_name'></div>
+                <div id='left'><input type='text' id='inputValue' class='text' maxlength='10' pattern='[\u4E00-\u9FFF\u3040-\u309F‾]*' value="<?php echo $lastname; ?>" name='last_name'></div>
                 <div id='err2'></div>
             </div>
                 
@@ -137,7 +142,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>カナ(姓)</label>
-                <div id='left'><input type='text' class='text' maxlength='10' pattern='[\u30A1-\u30F6]*' value="<?php echo $familynamekana; ?>" name='family_name_kana'></div>
+                <div id='left'><input type='text' id='inputValue' class='text' maxlength='10' pattern='[\u30A1-\u30F6]*' value="<?php echo $familynamekana; ?>" name='family_name_kana'></div>
                 <div id='err3'></div>
             </div>
                 
@@ -145,7 +150,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>カナ(名)</label>
-                <div id='left'><input type='text' class='text' maxlength='10' pattern='[\u30A1-\u30F6]*' value="<?php echo $lastnamekana; ?>" name='last_name_kana'></div>
+                <div id='left'><input type='text' id='inputValue' class='text' maxlength='10' pattern='[\u30A1-\u30F6]*' value="<?php echo $lastnamekana; ?>" name='last_name_kana'></div>
                 <div id='err4'></div>
             </div>
                 
@@ -153,7 +158,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>メールアドレス</label>
-                <div id='left'><input type='text' class='text' maxlength='100' pattern='^[0-9A-Za-z@\-]+$' value="<?php echo $mail; ?>" name='mail'></div>
+                <div id='left'><input type='text' id='inputValue' class='text' maxlength='100' pattern='^[0-9A-Za-z@\-]+$' value="<?php echo $mail; ?>" name='mail'></div>
                 <div id='err5'></div>
             </div>
                 
@@ -161,7 +166,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>パスワード</label>
-                <div id='left'><input type='password' class='text' maxlength='10' pattern='^[a-zA-Z0-9]+$' value="<? php echo $password; ?>" name='password'></div>
+                <div id='left'><input type='text' class='pass' maxlength='10' pattern='^[a-zA-Z0-9]+$' value="<?php echo $password; ?>" name='password'></div>
                 <div id='err6'></div>
             </div>
                 
@@ -169,7 +174,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>性別</label>
-                <div id='left'><input type='radio' class='text' name='gender' value='男' <?php echo $gendermale; ?>>男
+                <div id='left'><input type='radio' id='inputValue' class='text' name='gender' value='男' <?php echo $gendermale; ?>>男
                 <input type="radio" class="text" name="gender" value="女" <?php echo $genderfemale; ?>>女</div>
             </div>
                 
@@ -177,7 +182,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>郵便番号</label>
-                <div id="left"><input type="text" class="text" maxlength="7" pattern="^[0-9]+$" value="<?php echo $postalcode; ?>" name="postal_code"></div>
+                <div id="left"><input type="text" id='inputValue' class="text" maxlength="7" pattern="^[0-9]+$" value="<?php echo $postalcode; ?>" name="postal_code"></div>
                 <div id="err7"></div>
             </div>
                 
@@ -185,7 +190,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>住所(都道府県)</label>
-                <div id="left"><select class="text" name="prefecture">
+                <div id="left"><select class="text" id='inputValue' name="prefecture">
                     <option value=""></option>
                     <option value="北海道" <?php echo $hkdcheck; ?>>北海道</option>
                     <option value="青森県" <?php echo $amrcheck; ?>>青森県</option>
@@ -242,7 +247,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>都道府県(市区町村)</label>
-                <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u3040-\u309F\u4E00-\u9FAF0-9\u30A0-\u30FF\u30FC\uFF10-\uFF19\uFF0D\s\-]+" value="<?php echo $address1; ?>" name="address_1"></div>
+                <div id="left"><input type="text" id='inputValue' class="text" maxlength="10" pattern="[\u3040-\u309F\u4E00-\u9FAF0-9\u30A0-\u30FF\u30FC\uFF10-\uFF19\uFF0D\s\-]+" value="<?php echo $address1; ?>" name="address_1"></div>
                 <div id="err9"></div>
             </div>
                 
@@ -250,7 +255,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>都道府県(番地)</label>
-                <div id="left"><input type="text" class="text" maxlength="100" pattern="[\u3040-\u309F\u4E00-\u9FAF0-9\u30A0-\u30FF\u30FC\uFF10-\uFF19\uFF0D\s\-]+" value="<?php echo $address2; ?>" name="address_2"></div>
+                <div id="left"><input type="text" id='inputValue' class="text" maxlength="100" pattern="[\u3040-\u309F\u4E00-\u9FAF0-9\u30A0-\u30FF\u30FC\uFF10-\uFF19\uFF0D\s\-]+" value="<?php echo $address2; ?>" name="address_2"></div>
                 <div id="err10"></div>
             </div>
                 
@@ -258,7 +263,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>アカウント権限</label>
-                <div id="left"><select class="text" name="authority">
+                <div id="left"><select class="text" id='inputValue' name="authority">
                     <option value="一般" <?php echo $authorityg; ?>>一般</option>
                     <option value="管理者" <?php echo $authoritym; ?>>管理者</option>
                 </select></div>
@@ -394,6 +399,19 @@ $stmt->execute([$accountid]);
                     return true;
                 }
             }
+            
+            document.addEventListener('DOMContentLoaded',function(){
+                var inputElement = document.getElementById('inputValue');
+                var userInput = localStorage.getItem('userInput');
+                if(userInput){
+                    inputElement.value = userInput;
+                }
+                
+                inputElement.addEventListener('input',function{
+                    localStorage.setItem('userInput',inputElement.value);
+                });
+            });
+            
         </script>
         
         <footer>
