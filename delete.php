@@ -9,6 +9,7 @@ $accountid = $_POST['number'];
 $stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
 
 $stmt->execute([$accountid]);
+
 ?>
 
 <!doctype HTML>
@@ -53,6 +54,8 @@ $stmt->execute([$accountid]);
                 }else{
                     $authority="管理者";
                 }
+                $maskedPass = substr_replace($row['password'],str_repeat("●",strlen($row['password'])),0,strlen($row['password']));
+
 
             echo "<label>名前(姓)</label><div id='right'>".$row['family_name']."</div>";
             
@@ -74,7 +77,7 @@ $stmt->execute([$accountid]);
             
             echo"<br>";
             
-            echo"<label>パスワード</label><div id='right'>".$row['password']."</div>";
+            echo"<label>パスワード</label><div id='right'>".$maskedPass."</div>";
             
             echo"<br>";
             
