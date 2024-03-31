@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(E_ALL);
 ini_set('display_errors',0);
 
 $dsn='mysql:dbname=lesson1; host=localhost';
@@ -17,17 +18,30 @@ try{
         print('');
     }
 }catch(Exception $e){
-    print"<font color='red'>エラーが発生したためアカウント登録できません。</font>";
-}catch(Exception $e){
-    print"<font color='red'>エラーが発生したためアカウント登録できません。</font>";
-}catch(ParseException $pe){
-    print"<font color='red'>エラーが発生したためアカウント登録できません。</font>".$pe->getMessage();
-}catch(FatalException $fe){
-    print"<font color='red'>エラーが発生したためアカウント登録できません。</font>".$fe->getMessage();
-}catch(WarningException $we){
-     print"<font color='red'>エラーが発生したためアカウント登録できません。</font>".$we->getMessage();
+    print"<font color='red'>エラーが発生したためアカウント更新できません。</font>";
 }
 
+register_shutdown_function(function(){
+    $error = error_get_last();
+    if($error !== null && $error['type'] === E_ERROR){
+        print"<font color='red'>エラーが発生したためアカウント更新できません。</font>";
+        $error['message'];
+    }
+});
+
+function customErrorHandler($errno,$errstr){
+    switch($errno){
+        case E_WARNING:
+            die("<font color='red'>エラーが発生したためアカウント更新できません。</font>");
+            break;
+            
+        case E_NOTICE:
+            die("<font color='red'>エラーが発生したためアカウント更新できません。</font>");
+            break;
+    }
+}
+
+set_error_handler("customErrorHandler");
 
 mb_internal_encoding("utf8");
 
