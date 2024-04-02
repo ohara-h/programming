@@ -381,25 +381,14 @@ $stmt->execute([$accountid]);
                 check9();
                 check10();
                 
-                if(check1()==1 || check2()==1  || check3()==1 || check4()==1 || check5()==1 || check7()==1 || check8()==1 || check9()==1 || check10()==1){
+                if(check1()==1 || check2()==1 || check3()==1 || check4()==1 || check5()==1 || check7()==1 || check8()==1 || check9()==1 || check10()==1){
                     return false;
                 }else{
                     return true;
                 }
             }
             
-            document.addEventListener('DOMContentLoaded',function(){
-                var inputElement = document.getElementById('inputValue');
-                var userInput = localStorage.getItem('userInput');
-                if(userInput){
-                    inputElement.value = userInput;
-                }
-                
-                inputElement.addEventListener('input',function{
-                    localStorage.setItem('userInput',inputElement.value);
-                });
-            });
-            
+
         </script>
         
         <footer>
