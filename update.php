@@ -54,7 +54,6 @@ $stmt->execute([$accountid]);
                         $familynamekana = $row['family_name_kana'];
                         $lastnamekana = $row['last_name_kana'];
                         $mail = $row['mail'];
-                        $password = $row['password'];
                         $postalcode = $row['postal_code'];
                         $address1 = $row['address_1'];
                         $address2 = $row['address_2'];
@@ -166,8 +165,8 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>パスワード</label>
-                <div id='left'><input type='text' class='pass' maxlength='10' pattern='^[a-zA-Z0-9]+$' value="<?php echo $password; ?>" name='password'></div>
-                <div id='err6'></div>
+                <div id='left'><input type='text' class='pass' maxlength='10' pattern='^[a-zA-Z0-9]+$' name='password'></div>
+                <div id="pass">未入力の場合、パスワードは更新されません。</div>
             </div>
                 
             <br>
@@ -331,16 +330,6 @@ $stmt->execute([$accountid]);
                     }
                 }
             
-                function check6(){
-                    if(register.password.value == ""){
-                        let err6 = document.getElementById("err6");
-                        err6.innerHTML = "パスワードが未入力です";
-                        err6.style.color="red";
-                        err6.style.marginLeft="60px";
-                        return 1;
-                    }
-                }
-            
                 function check7(){
                     if(register.postal_code.value == ""){
                         let err7 = document.getElementById("err7");
@@ -387,13 +376,12 @@ $stmt->execute([$accountid]);
                 check3();
                 check4();
                 check5();
-                check6();
                 check7();
                 check8();
                 check9();
                 check10();
                 
-                if(check1()==1 || check2()==1  || check3()==1 || check4()==1 || check5()==1 || check6()==1 || check7()==1 || check8()==1 || check9()==1 || check10()==1){
+                if(check1()==1 || check2()==1  || check3()==1 || check4()==1 || check5()==1 || check7()==1 || check8()==1 || check9()==1 || check10()==1){
                     return false;
                 }else{
                     return true;
