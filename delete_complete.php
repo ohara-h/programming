@@ -85,7 +85,7 @@ $stmt = $pdo->exec("DELETE from registration WHERE delete_flag = 1");
         <div id="title">アカウント削除完了画面</div>
         <h1>削除完了しました</h1>
         
-        <form action="diblog.html">
+        <form action="diblog.php">
             <input type="submit"  class="submit" value="TOPページへ戻る">
         </form>
         

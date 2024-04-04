@@ -90,7 +90,7 @@ if($_POST['password'] == ""){
         <div id="title">アカウント更新完了画面</div>
         <h1>更新完了しました</h1>
         
-        <form action="diblog.html">
+        <form action="diblog.php">
             <input type="submit"  class="submit" value="TOPページへ戻る">
         </form>
         

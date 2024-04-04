@@ -55,7 +55,9 @@ $stmt->execute([$mail]);
 if($stmt->rowcount() > 0){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if(password_verify($password,$row['password'])){
-        header('Location:diblog.html');
+        $accountid = $row['id'];
+        header('Location:diblog.php?accountid='.urlencode($accountid));
+        
         exit();
     }else{
         $error = "ログインに失敗しました";
