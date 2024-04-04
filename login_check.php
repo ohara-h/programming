@@ -55,8 +55,8 @@ $stmt->execute([$mail]);
 if($stmt->rowcount() > 0){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if(password_verify($password,$row['password'])){
-        $actid = $row['id'];
-        header('Location:diblog.php?actid='.urlencode($actid));
+        $auth = $row['authority'];
+        header('Location:diblog.php?auth='.urlencode($auth));
         
         exit();
     }else{

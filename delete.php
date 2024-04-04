@@ -4,25 +4,17 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
-$actid = $_GET['actid'];
+$auth = $_GET['auth'];
  
-$stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
-    
-$stmt->execute([$actid]);
-
-while($row = $stmt->fetch()){
-    $auth = $row['authority'];
-}
-
 if($auth == 1){
-    $regist = "<a href = 'regist.php?actid=".$actid."'>アカウント登録</a>";
-    $list = "<a href = 'list.php?actid=".$actid."'>アカウント一覧</a>";
+    $regist = "<a href = 'regist.php?auth=".$auth."'>アカウント登録</a>";
+    $list = "<a href = 'list.php?auth=".$auth."'>アカウント一覧</a>";
 }else{
     $regist = "アカウント登録";
     $list = "アカウント一覧";
 }
 
-$delete_con = "delete_confirm.php?actid=".$actid;
+$delete_con = "delete_confirm.php?auth=".$auth;
 
 $accountid = $_POST['number'];
  
@@ -58,6 +50,8 @@ $stmt->execute([$accountid]);
         </header>
         
         <div id="title">アカウント削除画面</div>
+        
+        <p id="authmsg"></p>
         
         <div id="box">
             
@@ -129,5 +123,22 @@ $stmt->execute([$accountid]);
         <footer>
             <div class="box3">Copyright D.I.works| D.I.blog is the one which provides A to Z about programming</div>
         </footer>
+        
+        <script>
+            var auth = <?php echo $auth; ?>;
+                if(auth == 0){
+                    let authmsg = document.getElementById("authmsg");
+                    authmsg.innerHTML = "権限が一般のため、操作できません";
+                    authmsg.style.color="red";
+                    authmsg.style.marginLeft="150px";
+                    let elements = document.querySelectorAll('a,input,button,textarea,select');
+                    Array.from(elements).forEach(function(element){
+                        if(element.tagName.toLowerCase() !== 'a') {
+                            element.disabled = true;
+                            element.style.pointerEvents = 'none';
+                        }
+                    });
+                }
+        </script>
     </body>
 </html>

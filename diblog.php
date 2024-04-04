@@ -4,19 +4,11 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
-$actid = $_GET['actid'];
- 
-$stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
-    
-$stmt->execute([$actid]);
-
-while($row = $stmt->fetch()){
-    $auth = $row['authority'];
-}
+$auth = $_GET['auth'];
 
 if($auth == 1){
-    $regist = "<a href = 'regist.php?actid=".$actid."'>アカウント登録</a>";
-    $list = "<a href = 'list.php?actid=".$actid."'>アカウント一覧</a>";
+    $regist = "<a href = 'regist.php?auth=".$auth."'>アカウント登録</a>";
+    $list = "<a href = 'list.php?auth=".$auth."'>アカウント一覧</a>";
 }else{
     $regist = "アカウント登録";
     $list = "アカウント一覧";
@@ -63,7 +55,7 @@ if($auth == 1){
       </ul>
     </div>
   </header>
-  
+  <p id="authmsg"></p>
   <main>
       
    <div class="left">
@@ -103,6 +95,22 @@ if($auth == 1){
        
    </div>
   </main>
+     
+  <script>
+      var auth = <?php echo $auth; ?>;
+                if(auth == 0){
+                    let authmsg = document.getElementById("authmsg");
+                    authmsg.innerHTML = "権限が一般のため、操作できません";
+                    authmsg.style.color="red";
+                    let elements = document.querySelectorAll('a,input,button,textarea,select');
+                    Array.from(elements).forEach(function(element){
+                        if(element.tagName.toLowerCase() !== 'a') {
+                            element.disabled = true;
+                            element.style.pointerEvents = 'none';
+                        }
+                    });
+                }
+  </script>
      
   <footer>
       

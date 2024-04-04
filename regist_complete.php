@@ -48,25 +48,17 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
-$actid = $_GET['actid'];
-
-$stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
-    
-$stmt->execute([$actid]);
-
-while($row = $stmt->fetch()){
-    $auth = $row['authority'];
-}
+$auth = $_GET['auth'];
 
 if($auth == 1){
-    $regist = "<a href = 'regist.php?actid=".$actid."'>アカウント登録</a>";
-    $list = "<a href = 'list.php?actid=".$actid."'>アカウント一覧</a>";
+    $regist = "<a href = 'regist.php?auth=".$auth."'>アカウント登録</a>";
+    $list = "<a href = 'list.php?auth=".$auth."'>アカウント一覧</a>";
 }else{
     $regist = "アカウント登録";
     $list = "アカウント一覧";
 }
 
-$top = "diblog.php?actid=".$actid;
+$top = "diblog.php?auth=".$auth;
 
 $pdo->exec("insert into registration(family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,prefecture,address_1,address_2,authority,registered_time,update_time,delete_flag)values('".$_POST['family_name']."','".$_POST['last_name']."','".$_POST['family_name_kana']."','".$_POST['last_name_kana']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['gender']."','".$_POST['postal_code']."','".$_POST['prefecture']."','".$_POST['address_1']."','".$_POST['address_2']."','".$_POST['authority']."','$date','$date','0');");
 
@@ -98,6 +90,7 @@ $pdo->exec("insert into registration(family_name,last_name,family_name_kana,last
         </header>
         
         <div id="title">アカウント登録完了画面</div>
+        <p id="authmsg"></p>
         <h1>登録完了しました</h1>
         
         <form method="post" action="<?php echo $top; ?>">
@@ -107,5 +100,22 @@ $pdo->exec("insert into registration(family_name,last_name,family_name_kana,last
         <footer>
             <div class="box3">Copyright D.I.works| D.I.blog is the one which provides A to Z about programming</div>
         </footer>
+        
+        <script>
+            var auth = <?php echo $auth; ?>;
+                if(auth == 0){
+                    let authmsg = document.getElementById("authmsg");
+                    authmsg.innerHTML = "権限が一般のため、操作できません";
+                    authmsg.style.color="red";
+                    authmsg.style.marginLeft="150px";
+                    let elements = document.querySelectorAll('a,input,button,textarea,select');
+                    Array.from(elements).forEach(function(element){
+                        if(element.tagName.toLowerCase() !== 'a') {
+                            element.disabled = true;
+                            element.style.pointerEvents = 'none';
+                        }
+                    });
+                }
+        </script>
     </body>
 </html>
