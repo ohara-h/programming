@@ -1,3 +1,30 @@
+<?php
+
+mb_internal_encoding("utf8");
+
+$pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
+
+$actid = $_GET['actid'];
+ 
+$stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
+    
+$stmt->execute([$actid]);
+
+while($row = $stmt->fetch()){
+    $auth = $row['authority'];
+}
+
+if($auth == 1){
+    $regist = "<a href = 'regist.php?actid=".$actid."'>アカウント登録</a>";
+    $list = "<a href = 'list.php?actid=".$actid."'>アカウント一覧</a>";
+}else{
+    $regist = "アカウント登録";
+    $list = "アカウント一覧";
+}
+
+$regist_com = "regist_complete.php?actid=".$actid;
+?>
+
 <!doctype HTML>
 <html lang="ja">
     <head>
@@ -15,8 +42,8 @@
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>
                     <li class="li3">問い合わせ</li>
-                    <li class="li3"><a href = "regist.php">アカウント登録</a></li>
-                    <li class="li3"><a href = "list.php">アカウント一覧</a></li>
+                    <li class="li3"><?php echo $regist; ?></li>
+                    <li class="li3"><?php echo $list; ?></li>
                     <li class="li2">その他</li>
                 </ul>
             </div>
@@ -94,7 +121,7 @@
             <button type="button" onClick=history.back() class="submit">前に戻る</button>
         </form>
         
-        <form method="post" action="regist_complete.php">
+        <form method="post" action="<?php echo $regist_com; ?>">
             <input type="submit" class="submit2" value="登録する">
             <input type="hidden" value="<?php echo $_POST['family_name']; ?>" name="family_name">
             <input type="hidden" value="<?php echo $_POST['last_name']; ?>" name="last_name">

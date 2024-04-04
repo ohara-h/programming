@@ -4,19 +4,19 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
-$accountid = $_GET['accountid'];
+$actid = $_GET['actid'];
  
 $stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
     
-$stmt->execute([$accountid]);
+$stmt->execute([$actid]);
 
 while($row = $stmt->fetch()){
     $auth = $row['authority'];
 }
 
 if($auth == 1){
-    $regist = "<a href = 'regist.php'>アカウント登録</a>";
-    $list = "<a href = 'list.php'>アカウント一覧</a>";
+    $regist = "<a href = 'regist.php?actid=".$actid."'>アカウント登録</a>";
+    $list = "<a href = 'list.php?actid=".$actid."'>アカウント一覧</a>";
 }else{
     $regist = "アカウント登録";
     $list = "アカウント一覧";

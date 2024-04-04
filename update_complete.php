@@ -45,9 +45,29 @@ set_error_handler("customErrorHandler");
 
 mb_internal_encoding("utf8");
 
-$accountid = $_POST['number'];
-
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
+
+$actid = $_GET['actid'];
+ 
+$stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
+    
+$stmt->execute([$actid]);
+
+while($row = $stmt->fetch()){
+    $auth = $row['authority'];
+}
+
+if($auth == 1){
+    $regist = "<a href = 'regist.php?actid=".$actid."'>アカウント登録</a>";
+    $list = "<a href = 'list.php?actid=".$actid."'>アカウント一覧</a>";
+}else{
+    $regist = "アカウント登録";
+    $list = "アカウント一覧";
+}
+
+$top="diblog.php?actid=".$actid;
+
+$accountid = $_POST['number'];
 
 if($_POST['password'] == ""){
     $stmt = $pdo->prepare("UPDATE registration SET family_name='".$_POST['family_name']."',last_name='".$_POST['last_name']."',family_name_kana='".$_POST['family_name_kana']."',last_name_kana='".$_POST['last_name_kana']."',mail='".$_POST['mail']."',gender='".$_POST['gender']."',postal_code='".$_POST['postal_code']."',prefecture='".$_POST['prefecture']."',address_1='".$_POST['address_1']."',address_2='".$_POST['address_2']."',authority='".$_POST['authority']."',update_time='$date' WHERE id = ?"); 
@@ -80,8 +100,8 @@ if($_POST['password'] == ""){
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>
                     <li class="li3">問い合わせ</li>
-                    <li class="li3"><a href = "regist.php">アカウント登録</a></li>
-                    <li class="li3"><a href = "list.php">アカウント一覧</a></li>
+                    <li class="li3"><?php echo $regist; ?></li>
+                    <li class="li3"><?php echo $list; ?></li>
                     <li class="li2">その他</li>
                 </ul>
             </div>
@@ -90,7 +110,7 @@ if($_POST['password'] == ""){
         <div id="title">アカウント更新完了画面</div>
         <h1>更新完了しました</h1>
         
-        <form action="diblog.php">
+        <form method="post" action="<?php echo $top; ?>">
             <input type="submit"  class="submit" value="TOPページへ戻る">
         </form>
         

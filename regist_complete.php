@@ -48,6 +48,26 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
+$actid = $_GET['actid'];
+
+$stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
+    
+$stmt->execute([$actid]);
+
+while($row = $stmt->fetch()){
+    $auth = $row['authority'];
+}
+
+if($auth == 1){
+    $regist = "<a href = 'regist.php?actid=".$actid."'>アカウント登録</a>";
+    $list = "<a href = 'list.php?actid=".$actid."'>アカウント一覧</a>";
+}else{
+    $regist = "アカウント登録";
+    $list = "アカウント一覧";
+}
+
+$top = "diblog.php?actid=".$actid;
+
 $pdo->exec("insert into registration(family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,prefecture,address_1,address_2,authority,registered_time,update_time,delete_flag)values('".$_POST['family_name']."','".$_POST['last_name']."','".$_POST['family_name_kana']."','".$_POST['last_name_kana']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['gender']."','".$_POST['postal_code']."','".$_POST['prefecture']."','".$_POST['address_1']."','".$_POST['address_2']."','".$_POST['authority']."','$date','$date','0');");
 
 ?>
@@ -70,8 +90,8 @@ $pdo->exec("insert into registration(family_name,last_name,family_name_kana,last
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>
                     <li class="li3">問い合わせ</li>
-                    <li class="li3"><a href = "regist.php">アカウント登録</a></li>
-                    <li class="li3"><a href = "list.php">アカウント一覧</a></li>
+                    <li class="li3"><?php echo $regist; ?></li>
+                    <li class="li3"><?php echo $list; ?></li>
                     <li class="li2">その他</li>
                 </ul>
             </div>
@@ -80,7 +100,7 @@ $pdo->exec("insert into registration(family_name,last_name,family_name_kana,last
         <div id="title">アカウント登録完了画面</div>
         <h1>登録完了しました</h1>
         
-        <form action="diblog.php">
+        <form method="post" action="<?php echo $top; ?>">
             <input type="submit"  class="submit" value="TOPページへ戻る">
         </form>
         

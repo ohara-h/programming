@@ -1,3 +1,30 @@
+<?php
+
+mb_internal_encoding("utf8");
+
+$pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
+
+$actid = $_GET['actid'];
+ 
+$stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
+    
+$stmt->execute([$actid]);
+
+while($row = $stmt->fetch()){
+    $auth = $row['authority'];
+}
+
+if($auth == 1){
+    $regist = "<a href = 'regist.php?actid=".$actid."'>アカウント登録</a>";
+    $list = "<a href = 'list.php?actid=".$actid."'>アカウント一覧</a>";
+}else{
+    $regist = "アカウント登録";
+    $list = "アカウント一覧";
+}
+
+$regist_con = "regist_confirm.php?actid=".$actid;
+?>
+
 <!doctype HTML>
 <html lang = "ja">
     <head>
@@ -15,8 +42,8 @@
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>
                     <li class="li3">問い合わせ</li>
-                    <li class="li3"><a href = "regist.php">アカウント登録</a></li>
-                    <li class="li3"><a href = "list.php">アカウント一覧</a></li>
+                    <li class="li3"><?php echo $regist; ?></li>
+                    <li class="li3"><?php echo $list; ?></li>
                     <li class="li2">その他</li>
                 </ul>
             </div>
@@ -24,7 +51,7 @@
         
         <div id ="title">アカウント登録画面</div>
         
-        <form method="post" action="regist_confirm.php" name="register">
+        <form method="post" action="<?php echo $regist_con; ?>" name="register">
             <div>
                 <label>名前(姓)</label>
                 <div id="left"><input type="text" class="text" maxlength="10" pattern="[\u4E00-\u9FFF\u3040-\u309F‾]*" name="family_name"></div>

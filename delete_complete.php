@@ -47,6 +47,26 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
+$actid = $_GET['actid'];
+ 
+$stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
+    
+$stmt->execute([$actid]);
+
+while($row = $stmt->fetch()){
+    $auth = $row['authority'];
+}
+
+if($auth == 1){
+    $regist = "<a href = 'regist.php?actid=".$actid."'>アカウント登録</a>";
+    $list = "<a href = 'list.php?actid=".$actid."'>アカウント一覧</a>";
+}else{
+    $regist = "アカウント登録";
+    $list = "アカウント一覧";
+}
+
+$top = "diblog.php?actid=".$actid;
+
 $accountid = $_POST['number'];
  
 $stmt = $pdo->prepare("UPDATE registration SET delete_flag=1 WHERE id = ?");
@@ -75,8 +95,8 @@ $stmt = $pdo->exec("DELETE from registration WHERE delete_flag = 1");
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>
                     <li class="li3">問い合わせ</li>
-                    <li class="li3"><a href = "regist.php">アカウント登録</a></li>
-                    <li class="li3"><a href = "list.php">アカウント一覧</a></li>
+                    <li class="li3"><?php echo $regist; ?></li>
+                    <li class="li3"><?php echo $list; ?></li>
                     <li class="li2">その他</li>
                 </ul>
             </div>
@@ -85,7 +105,7 @@ $stmt = $pdo->exec("DELETE from registration WHERE delete_flag = 1");
         <div id="title">アカウント削除完了画面</div>
         <h1>削除完了しました</h1>
         
-        <form action="diblog.php">
+        <form method="post" action="<?php echo $top; ?>">
             <input type="submit"  class="submit" value="TOPページへ戻る">
         </form>
         

@@ -4,6 +4,28 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
+$actid = $_GET['actid'];
+ 
+$stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
+    
+$stmt->execute([$actid]);
+
+while($row = $stmt->fetch()){
+    $auth = $row['authority'];
+}
+
+if($auth == 1){
+    $regist = "<a href = 'regist.php?actid=".$actid."'>アカウント登録</a>";
+    $list = "<a href = 'list.php?accountid=".$actid."'>アカウント一覧</a>";
+}else{
+    $regist = "アカウント登録";
+    $list = "アカウント一覧";
+}
+
+$delete = "delete.php?actid=".$actid;
+$update = "update.php?actid=".$actid;
+
+
 $stmt = $pdo->query("select * from registration ORDER BY id DESC");
 
 ?>
@@ -25,8 +47,8 @@ $stmt = $pdo->query("select * from registration ORDER BY id DESC");
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>
                     <li class="li3">問い合わせ</li>
-                    <li class="li3"><a href = "regist.php">アカウント登録</a></li>
-                    <li class="li3"><a href = "list.php">アカウント一覧</a></li>
+                    <li class="li3"><?php echo $regist; ?></li>
+                    <li class="li3"><?php echo $list; ?></li>
                     <li class="li2">その他</li>
                 </ul>
             </div>
@@ -92,12 +114,12 @@ $stmt = $pdo->query("select * from registration ORDER BY id DESC");
                     echo "<td>".$registeredtime."</td>";
                     echo "<td>".$updatetime."</td>";
                     echo "<td>";
-                        echo "<form method='post' action='delete.php'>";
+                        echo "<form method='post' action='".$delete."'>";
                             echo "<input type='submit' class='delete' value='削除'>";
                             echo "<input type='hidden' name='number' value='".$row['id']."'>";
                         echo "</form>";
                     
-                        echo "<form method='post' action='update.php'>";
+                        echo "<form method='post' action='".$update."'>";
                             echo "<input type='submit' class='update' value='更新'>";
                             echo "<input type='hidden' name='number' value='".$row['id']."'>";
                         echo "</form>";
