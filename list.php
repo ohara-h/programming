@@ -50,6 +50,50 @@ $stmt = $pdo->query("select * from registration ORDER BY id DESC");
         
         <p id="authmsg"></p>
         
+        <form method="post" action="list_search.php">
+            <table>
+                <tr>
+                    <td><label>名前(姓)</label></td>
+                    <td><input type="text" class="text" name="family_name"></td>
+                    <td><label>名前(名)</label></td>
+                    <td><input type="text" class="text" name="last_name"></td>
+                </tr>
+                
+                <tr>
+                    <td>カナ(姓)</td>
+                    <td><input type="text" class="text" name="family_name_kana"></td>
+                    <td>カナ(名)</td>
+                    <td><input type="text" class="text" name="last_name_kana"></td>
+                </tr>
+                
+                <tr>
+                    <td>メールアドレス</td>
+                    <td><input type="text" class="text" name="mail"></td>
+                    <td>性別</td>
+                    <td>
+                        <input type="radio" name="gender" value="男" checked>男<input type="radio" name="gender" value="女">女
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>アカウント権限</td>
+                    <td>
+                        <select class="text" name="authority">
+                            <option value="一般">一般</option>
+                            <option value="管理者">管理者</option>
+                        </select>
+                    </td>
+                    <td colspan="2"></td>
+                </tr>
+                
+                <tr>
+                    <td><input type="submit" class="kensaku" value="検索"></td>
+                </tr>
+            </table>
+        </form>
+        
+        <br>
+        
         <table>
             <thead>
                 <tr>

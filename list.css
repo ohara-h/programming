@@ -60,3 +60,13 @@ td form{
     float:left;
     padding-left:7px;
 }
+
+.text{
+    height:20px;
+    width:98%;
+}
+
+.kensaku{
+    height:100%;
+    width:100%;
+}
