@@ -5,6 +5,34 @@ mb_internal_encoding("utf8");
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
 $auth = $_GET['auth'];
+
+if(isset($_GET['family_name'])){
+    $family_name = $_GET['family_name'];
+}
+
+if(isset($_GET['last_name'])){
+    $last_name = $_GET['last_name'];
+}
+
+if(isset($_GET['family_name_kana'])){
+    $family_name_kana = $_GET['family_name_kana'];
+}
+
+if(isset($_GET['last_name_kana'])){
+    $last_name_kana = $_GET['last_name_kana'];
+}
+
+if(isset($_GET['mail'])){
+    $mail = $_GET['mail'];
+}
+
+if(isset($_GET['gender'])){
+    $getgender = $_GET['gender'];
+}
+
+if(isset($_GET['authority'])){
+    $getauthority = $_GET['authority'];
+}
  
 if($auth == 1){
     $regist = "<a href = 'regist.php?auth=".$auth."'>アカウント登録</a>";
@@ -16,9 +44,8 @@ if($auth == 1){
 
 $delete = "delete.php?auth=".$auth;
 $update = "update.php?auth=".$auth;
-
-
-$stmt = $pdo->query("select * from registration ORDER BY id DESC");
+$list_s = "list_search.php?auth=".$auth;
+$list_s_all = "list_search_all.php?auth=".$auth;
 
 ?>
 
@@ -50,7 +77,7 @@ $stmt = $pdo->query("select * from registration ORDER BY id DESC");
         
         <p id="authmsg"></p>
         
-        <form method="post" action="list_search.php">
+        <form method="post" action="<?php echo $list_s; ?>">
             <table>
                 <tr>
                     <td><label>名前(姓)</label></td>
@@ -87,11 +114,23 @@ $stmt = $pdo->query("select * from registration ORDER BY id DESC");
                 </tr>
                 
                 <tr>
-                    <td><input type="submit" class="kensaku" value="検索"></td>
+                    <td colspan="4"><input type="submit" class="kensaku" value="検索"></td>
                 </tr>
             </table>
         </form>
         
+        <form method="post" action="<?php echo $list_s_all; ?>">
+            <table>
+                <tr>
+                    <td><input type="submit" class="kensaku" value="全件検索"></td>
+                </tr>
+            </table>
+        </form>
+                    
+                
+        
+        <br>
+        <br>
         <br>
         
         <table>
@@ -115,7 +154,14 @@ $stmt = $pdo->query("select * from registration ORDER BY id DESC");
             <tbody>
                     
                 <?php
-        
+                if($family_name == "all_search"){
+                    $stmt = $pdo->query("select * from registration ORDER BY id DESC");
+                }else if(isset($family_name)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $stmt->execute([$family_name_pattern,$getgender,$getauthority]);
+                }
+                
                 while($row = $stmt->fetch()){
             
                 if($row['gender'] == 0){
