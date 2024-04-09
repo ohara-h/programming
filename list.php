@@ -154,12 +154,281 @@ $list_s_all = "list_search_all.php?auth=".$auth;
             <tbody>
                     
                 <?php
-                if($family_name == "all_search"){
+                if(isset($family_name) && $family_name == "all_search"){
                     $stmt = $pdo->query("select * from registration ORDER BY id DESC");
+                    
+                }else if(isset($family_name) && isset($last_name) && isset($family_name_kana) && isset($last_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND last_name LIKE ? AND family_name_kana LIKE ? AND last_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$last_name_pattern,$family_name_kana_pattern,$last_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($last_name) && isset($family_name_kana) && isset($last_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND last_name LIKE ? AND family_name_kana LIKE ? AND last_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$last_name_pattern,$family_name_kana_pattern,$last_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($last_name) && isset($family_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND last_name LIKE ? AND family_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$last_name_pattern,$family_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($last_name) && isset($last_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND last_name LIKE ? AND last_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$last_name_pattern,$last_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($family_name_kana) && isset($last_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND family_name_kana LIKE ? AND last_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$family_name_kana_pattern,$last_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($last_name) && isset($family_name_kana) && isset($last_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE last_name LIKE ? AND family_name_kana LIKE ? AND last_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$last_name_pattern,$family_name_kana_pattern,$last_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($last_name) && isset($family_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND last_name LIKE ? AND family_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$last_name_pattern,$family_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($last_name) && isset($last_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND last_name LIKE ? AND last_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$last_name_pattern,$last_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($last_name) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND last_name LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$last_name_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($family_name_kana) && isset($last_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND family_name_kana LIKE ? AND last_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$family_name_kana_pattern,$last_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($family_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND family_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$family_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($last_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND last_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$last_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($last_name) && isset($family_name_kana) && isset($last_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE last_name LIKE ? AND family_name_kana LIKE ? AND last_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    
+                    $stmt->execute([$last_name_pattern,$family_name_kana_pattern,$last_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($last_name) && isset($family_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE last_name LIKE ? AND family_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$last_name_pattern,$family_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($last_name) && isset($last_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE last_name LIKE ? AND last_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$last_name_pattern,$last_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name_kana) && isset($last_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name_kana LIKE ? AND last_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$family_name_kana_pattern,$last_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($last_name)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND last_name LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $last_name_pattern = '%'.$last_name.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$last_name_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($family_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND family_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$family_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($last_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND last_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$last_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_pattern = '%'.$family_name.'%';;
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$family_name_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($last_name) && isset($family_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE last_name LIKE ? AND family_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    
+                    $stmt->execute([$last_name_pattern,$family_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($last_name) && isset($last_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE last_name LIKE ? AND last_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    
+                    $stmt->execute([$last_name_pattern,$last_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($last_name) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE last_name LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $last_name_pattern = '%'.$last_name.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$last_name_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name_kana) && isset($last_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name_kana LIKE ? AND last_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    
+                    $stmt->execute([$family_name_kana_pattern,$last_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$family_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($last_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE last_name_kana LIKE ? AND mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$last_name_kana_pattern,$mail_pattern,$getgender,$getauthority]);
+                    
                 }else if(isset($family_name)){
                     $stmt = $pdo->prepare("select * from registration WHERE family_name LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
                     $family_name_pattern = '%'.$family_name.'%';
+
                     $stmt->execute([$family_name_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($last_name)){
+                    $stmt = $pdo->prepare("select * from registration WHERE last_name LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $last_name_pattern = '%'.$last_name.'%';
+                    
+                    $stmt->execute([$last_name_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name_kana)){
+                    $stmt = $pdo->prepare("select * from registration WHERE family_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $family_name_kana_pattern = '%'.$family_name_kana.'%';
+                    
+                    $stmt->execute([$family_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($family_name) && isset($last_name) && isset($family_name_kana) && isset($last_name_kana) && isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE last_name_kana LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $last_name_kana_pattern = '%'.$last_name_kana.'%';
+                    
+                    $stmt->execute([$last_name_kana_pattern,$getgender,$getauthority]);
+                    
+                }else if(isset($mail)){
+                    $stmt = $pdo->prepare("select * from registration WHERE mail LIKE ? AND gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    $mail_pattern = '%'.$mail.'%';
+                    
+                    $stmt->execute([$mail_pattern,$getgender,$getauthority]);
+                    
+                }else{
+                    $stmt = $pdo->prepare("select * from registration WHERE gender = ? AND authority = ? ORDER BY id DESC");
+                    
+                    error_reporting(0);
+                    
+                    $stmt->execute([$getgender,$getauthority]);
                 }
                 
                 while($row = $stmt->fetch()){
