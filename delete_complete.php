@@ -18,13 +18,13 @@ try{
         print('');
     }
 }catch(Exception $e){
-    print"<font color='red'>エラーが発生したためアカウント更新できません。</font>";
+    print"<font color='red'>エラーが発生したためアカウント削除できません。</font>";
 }
 
 register_shutdown_function(function(){
     $error = error_get_last();
     if($error !== null && $error['type'] === E_ERROR){
-        print"<font color='red'>エラーが発生したためアカウント更新できません。</font>";
+        print"<font color='red'>エラーが発生したためアカウント削除できません。</font>";
         $error['message'];
     }
 });
@@ -32,11 +32,11 @@ register_shutdown_function(function(){
 function customErrorHandler($errno,$errstr){
     switch($errno){
         case E_WARNING:
-            die("<font color='red'>エラーが発生したためアカウント更新できません。</font>");
+            die("<font color='red'>エラーが発生したためアカウント削除できません。</font>");
             break;
             
         case E_NOTICE:
-            die("<font color='red'>エラーが発生したためアカウント更新できません。</font>");
+            die("<font color='red'>エラーが発生したためアカウント削除できません。</font>");
             break;
     }
 }
@@ -58,6 +58,7 @@ if($auth == 1){
 }
 
 $top = "diblog.php?auth=".$auth;
+$top2 = "<a href = 'diblog.php?auth=".$auth."'>トップ</a>";
 
 $accountid = $_POST['number'];
  
@@ -82,7 +83,7 @@ $stmt = $pdo->exec("DELETE from registration WHERE delete_flag = 1");
         <header>
             <div class="box1">
                 <ul class="ul1">
-                    <li class="li1">トップ</li>
+                    <li class="li1"><?php echo $top2; ?></li>
                     <li class="li3">プロフィール</li>
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>

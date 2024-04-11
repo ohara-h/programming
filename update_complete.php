@@ -59,7 +59,7 @@ if($auth == 1){
 }
 
 $top="diblog.php?auth=".$auth;
-
+$top2 = "<a href = 'diblog.php?auth=".$auth."'>トップ</a>";
 $accountid = $_POST['number'];
 
 if($_POST['password'] == ""){
@@ -88,7 +88,7 @@ if($_POST['password'] == ""){
         <header>
             <div class="box1">
                 <ul class="ul1">
-                    <li class="li1">トップ</li>
+                    <li class="li1"><?php echo $top2; ?></li>
                     <li class="li3">プロフィール</li>
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>

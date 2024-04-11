@@ -42,6 +42,7 @@ if($auth == 1){
     $list = "アカウント一覧";
 }
 
+$top = "<a href = 'diblog.php?auth=".$auth."'>トップ</a>";
 $delete = "delete.php?auth=".$auth;
 $update = "update.php?auth=".$auth;
 $list_s = "list_search.php?auth=".$auth;
@@ -61,7 +62,7 @@ $list_s_all = "list_search_all.php?auth=".$auth;
         <header>
             <div class="box1">
                 <ul class="ul1">
-                    <li class="li1">トップ</li>
+                    <li class="li1"><?php echo $top; ?></li>
                     <li class="li3">プロフィール</li>
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>
@@ -424,13 +425,13 @@ $list_s_all = "list_search_all.php?auth=".$auth;
                     $stmt->execute([$mail_pattern,$getgender,$getauthority]);
                     
                 }else{
-                    $stmt = $pdo->prepare("select * from registration WHERE gender = ? AND authority = ? ORDER BY id DESC");
+                    if(isset($getgender) && isset($getauthority)){
+                        $stmt = $pdo->prepare("select * from registration WHERE gender = ? AND authority = ? ORDER BY id DESC");
                     
-                    error_reporting(0);
-                    
-                    $stmt->execute([$getgender,$getauthority]);
+                        $stmt->execute([$getgender,$getauthority]);
+                    }
                 }
-                
+           if(isset($family_name) || isset($getgender)){
                 while($row = $stmt->fetch()){
             
                 if($row['gender'] == 0){
@@ -478,6 +479,7 @@ $list_s_all = "list_search_all.php?auth=".$auth;
                         echo "</form>";
                     echo "</td>";
                 echo "<tr>";
+                }
         }
         ?>
             </tbody>

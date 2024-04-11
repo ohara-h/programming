@@ -2,7 +2,50 @@
 
 mb_internal_encoding("utf8");
 
+error_reporting(E_ALL);
+ini_set('display_errors',0);
+
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
+
+$dsn='mysql:dbname=lesson1; host=localhost';
+$user='root';
+$password='';
+
+$date=date('y-m-d');
+
+try{
+    $dbh= new PDO($dsn,$user,$password);
+        
+    if($dbh == null){
+        print('接続に失敗しました。<br>');
+    }else{
+        print('');
+    }
+}catch(Exception $e){
+    print"<font color='red'>エラーが発生したためアカウント登録できません。</font>";
+}
+
+register_shutdown_function(function(){
+    $error = error_get_last();
+    if($error !== null && $error['type'] === E_ERROR){
+        print"<font color='red'>エラーが発生したためアカウント登録できません。</font>";
+        $error['message'];
+    }
+});
+
+function customErrorHandler($errno,$errstr){
+    switch($errno){
+        case E_WARNING:
+            die("<font color='red'>エラーが発生したためアカウント登録できません。</font>");
+            break;
+            
+        case E_NOTICE:
+            die("<font color='red'>エラーが発生したためアカウント登録できません。</font>");
+            break;
+    }
+}
+
+set_error_handler("customErrorHandler");
 
 $auth = $_GET['auth'];
 
@@ -14,6 +57,7 @@ if($auth == 1){
     $list = "アカウント一覧";
 }
 
+$top = "<a href = 'diblog.php?auth=".$auth."'>トップ</a>";
 $regist_com = "regist_complete.php?auth=".$auth;
 ?>
 
@@ -29,7 +73,7 @@ $regist_com = "regist_complete.php?auth=".$auth;
         <header>
             <div class="box1">
                 <ul class="ul1">
-                    <li class="li1">トップ</li>
+                    <li class="li1"><?php echo $top; ?></li>
                     <li class="li3">プロフィール</li>
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>

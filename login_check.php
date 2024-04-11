@@ -16,13 +16,13 @@ try{
         print('');
     }
 }catch(Exception $e){
-    print"<font color='red'>エラーが発生したためログインできません。</font>";
+    print"<font color='red'>エラーが発生したためログイン情報を取得できません。</font>";
 }
 
 register_shutdown_function(function(){
     $error = error_get_last();
     if($error !== null && $error['type'] === E_ERROR){
-        print"<font color='red'>エラーが発生したためログインできません。</font>";
+        print"<font color='red'>エラーが発生したためログイン情報を取得できません。</font>";
         $error['message'];
     }
 });
@@ -30,11 +30,11 @@ register_shutdown_function(function(){
 function customErrorHandler($errno,$errstr){
     switch($errno){
         case E_WARNING:
-            die("<font color='red'>エラーが発生したためログインできません。</font>");
+            die("<font color='red'>エラーが発生したためログイン情報を取得できません。</font>");
             break;
             
         case E_NOTICE:
-            die("<font color='red'>エラーが発生したためログインできません。</font>");
+            die("<font color='red'>エラーが発生したためログイン情報を取得できません。</font>");
             break;
     }
 }

@@ -14,6 +14,8 @@ if($auth == 1){
     $list = "アカウント一覧";
 }
 
+$top = "<a href = 'diblog.php?auth=".$auth."'>トップ</a>";
+
 $regist_con = "regist_confirm.php?auth=".$auth;
 ?>
 
@@ -29,7 +31,7 @@ $regist_con = "regist_confirm.php?auth=".$auth;
         <header>
             <div class="box1">
                 <ul class="ul1">
-                    <li class="li1">トップ</li>
+                    <li class="li1"><?php echo $top; ?></li>
                     <li class="li3">プロフィール</li>
                     <li class="li3">D.I.Blogについて</li>
                     <li class="li3">登録フォーム</li>
