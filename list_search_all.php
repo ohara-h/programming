@@ -42,9 +42,8 @@ function customErrorHandler($errno,$errstr){
 set_error_handler("customErrorHandler");
 
 $family_name = "all_search";
-$auth = $_GET['auth'];
 
 
-header('Location:list.php?family_name='.$family_name.'&auth='.$auth);
+header('Location:list.php?family_name='.$family_name);
 
 ?>

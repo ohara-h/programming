@@ -4,7 +4,12 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
-$auth = $_GET['auth'];
+session_start();
+$auth = $_SESSION['auth'];
+
+if(!isset($auth)){
+    header("Location:login.php");
+}
 
 if(isset($_GET['family_name'])){
     $family_name = $_GET['family_name'];
@@ -35,18 +40,18 @@ if(isset($_GET['authority'])){
 }
  
 if($auth == 1){
-    $regist = "<a href = 'regist.php?auth=".$auth."'>アカウント登録</a>";
-    $list = "<a href = 'list.php?auth=".$auth."'>アカウント一覧</a>";
+    $regist = "<a href = 'regist.php'>アカウント登録</a>";
+    $list = "<a href = 'list.php'>アカウント一覧</a>";
 }else{
     $regist = "アカウント登録";
     $list = "アカウント一覧";
 }
 
-$top = "<a href = 'diblog.php?auth=".$auth."'>トップ</a>";
-$delete = "delete.php?auth=".$auth;
-$update = "update.php?auth=".$auth;
-$list_s = "list_search.php?auth=".$auth;
-$list_s_all = "list_search_all.php?auth=".$auth;
+$top = "<a href = 'diblog.php'>トップ</a>";
+$delete = "delete.php";
+$update = "update.php";
+$list_s = "list_search.php";
+$list_s_all = "list_search_all.php";
 
 ?>
 

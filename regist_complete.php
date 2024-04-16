@@ -48,18 +48,23 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
-$auth = $_GET['auth'];
+session_start();
+$auth = $_SESSION['auth'];
+
+if(!isset($auth)){
+    header("Location:login.php");
+}
 
 if($auth == 1){
-    $regist = "<a href = 'regist.php?auth=".$auth."'>アカウント登録</a>";
-    $list = "<a href = 'list.php?auth=".$auth."'>アカウント一覧</a>";
+    $regist = "<a href = 'regist.php'>アカウント登録</a>";
+    $list = "<a href = 'list.php'>アカウント一覧</a>";
 }else{
     $regist = "アカウント登録";
     $list = "アカウント一覧";
 }
 
-$top = "diblog.php?auth=".$auth;
-$top2 = "<a href = 'diblog.php?auth=".$auth."'>トップ</a>";
+$top = "diblog.php";
+$top2 = "<a href = 'diblog.php'>トップ</a>";
 
 $pdo->exec("insert into registration(family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,prefecture,address_1,address_2,authority,registered_time,update_time,delete_flag)values('".$_POST['family_name']."','".$_POST['last_name']."','".$_POST['family_name_kana']."','".$_POST['last_name_kana']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['gender']."','".$_POST['postal_code']."','".$_POST['prefecture']."','".$_POST['address_1']."','".$_POST['address_2']."','".$_POST['authority']."','$date','$date','0');");
 

@@ -56,7 +56,10 @@ if($stmt->rowcount() > 0){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if(password_verify($password,$row['password'])){
         $auth = $row['authority'];
-        header('Location:diblog.php?auth='.urlencode($auth));
+        session_start();
+        $_SESSION['auth'] = $auth;
+        
+        header('Location:diblog.php');
         
         exit();
     }else{

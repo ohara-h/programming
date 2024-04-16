@@ -47,18 +47,23 @@ set_error_handler("customErrorHandler");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
-$auth = $_GET['auth'];
+session_start();
+$auth = $_SESSION['auth'];
+
+if(!isset($auth)){
+    header("Location:login.php");
+}
  
 if($auth == 1){
-    $regist = "<a href = 'regist.php?auth=".$auth."'>アカウント登録</a>";
-    $list = "<a href = 'list.php?auth=".$auth."'>アカウント一覧</a>";
+    $regist = "<a href = 'regist.php'>アカウント登録</a>";
+    $list = "<a href = 'list.php'>アカウント一覧</a>";
 }else{
     $regist = "アカウント登録";
     $list = "アカウント一覧";
 }
 
-$top = "<a href = 'diblog.php?auth=".$auth."'>トップ</a>";
-$delete_con = "delete_confirm.php?auth=".$auth;
+$top = "<a href = 'diblog.php'>トップ</a>";
+$delete_con = "delete_confirm.php";
 
 $accountid = $_POST['number'];
  
@@ -101,6 +106,11 @@ $stmt->execute([$accountid]);
             
         <?php
             while($row = $stmt->fetch()){
+                if($row['delete_flag'] == 1){
+                echo "<font color='red'>このアカウントは削除済みのため削除できません</font>";
+                exit();
+                } 
+                
                 if($row['gender'] == 0){
                     $gender="男";
                 }else{

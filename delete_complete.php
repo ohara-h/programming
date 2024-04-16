@@ -47,26 +47,29 @@ mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
-$auth = $_GET['auth'];
+session_start();
+$auth = $_SESSION['auth'];
+
+if(!isset($auth)){
+    header("Location:login.php");
+}
  
 if($auth == 1){
-    $regist = "<a href = 'regist.php?auth=".$auth."'>アカウント登録</a>";
-    $list = "<a href = 'list.php?auth=".$auth."'>アカウント一覧</a>";
+    $regist = "<a href = 'regist.php'>アカウント登録</a>";
+    $list = "<a href = 'list.php'>アカウント一覧</a>";
 }else{
     $regist = "アカウント登録";
     $list = "アカウント一覧";
 }
 
-$top = "diblog.php?auth=".$auth;
-$top2 = "<a href = 'diblog.php?auth=".$auth."'>トップ</a>";
+$top = "diblog.php";
+$top2 = "<a href = 'diblog.php'>トップ</a>";
 
 $accountid = $_POST['number'];
  
 $stmt = $pdo->prepare("UPDATE registration SET delete_flag=1 WHERE id = ?");
 
 $stmt->execute([$accountid]);
-
-$stmt = $pdo->exec("DELETE from registration WHERE delete_flag = 1");
 
 ?>
 
