@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+$auth = $_SESSION['auth'];
+
+if(!isset($auth)){
+    header("Location:login.php");
+}
+
 mb_internal_encoding("utf8");
 
 error_reporting(E_ALL);
@@ -46,13 +53,6 @@ function customErrorHandler($errno,$errstr){
 set_error_handler("customErrorHandler");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
-
-session_start();
-$auth = $_SESSION['auth'];
-
-if(!isset($auth)){
-    header("Location:login.php");
-}
  
 if($auth == 1){
     $regist = "<a href = 'regist.php'>アカウント登録</a>";
@@ -98,7 +98,7 @@ $stmt->execute([$accountid]);
             </div>
         </header>
         
-        <div id="title">アカウント登録完了画面</div>
+        <div id="title">アカウント削除確認画面</div>
         <p id="authmsg"></p>
         <h1>本当に削除してよろしいですか？</h1>
         

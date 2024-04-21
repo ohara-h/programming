@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+$auth = $_SESSION['auth'];
+
+if(!isset($auth)){
+    header("Location:login.php");
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors',0);
 
@@ -18,13 +25,13 @@ try{
         print('');
     }
 }catch(Exception $e){
-    print"<font color='red'>エラーが発生したためアカウント登録できません。</font>";
+    print"<font color='red'>エラーが発生したためアカウント登録できません。<br>メールアドレスがすでに登録されている場合は登録できません。</font>";
 }
 
 register_shutdown_function(function(){
     $error = error_get_last();
     if($error !== null && $error['type'] === E_ERROR){
-        print"<font color='red'>エラーが発生したためアカウント登録できません。</font>";
+        print"<font color='red'>エラーが発生したためアカウント登録できません。<br>メールアドレスがすでに登録されている場合は登録できません。</font>";
         $error['message'];
     }
 });
@@ -32,11 +39,11 @@ register_shutdown_function(function(){
 function customErrorHandler($errno,$errstr){
     switch($errno){
         case E_WARNING:
-            die("<font color='red'>エラーが発生したためアカウント登録できません。</font>");
+            die("<font color='red'>エラーが発生したためアカウント登録できません。<br>メールアドレスがすでに登録されている場合は登録できません。</font>");
             break;
             
         case E_NOTICE:
-            die("<font color='red'>エラーが発生したためアカウント登録できません。</font>");
+            die("<font color='red'>エラーが発生したためアカウント登録できません。<br>メールアドレスがすでに登録されている場合は登録できません。</font>");
             break;
     }
 }
@@ -47,13 +54,6 @@ set_error_handler("customErrorHandler");
 mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
-
-session_start();
-$auth = $_SESSION['auth'];
-
-if(!isset($auth)){
-    header("Location:login.php");
-}
 
 if($auth == 1){
     $regist = "<a href = 'regist.php'>アカウント登録</a>";

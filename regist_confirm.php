@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+$auth = $_SESSION['auth'];
+
+if(!isset($auth)){
+    header("Location:login.php");
+}
+
 mb_internal_encoding("utf8");
 
 error_reporting(E_ALL);
@@ -46,13 +53,6 @@ function customErrorHandler($errno,$errstr){
 }
 
 set_error_handler("customErrorHandler");
-
-session_start();
-$auth = $_SESSION['auth'];
-
-if(!isset($auth)){
-    header("Location:login.php");
-}
 
 if($auth == 1){
     $regist = "<a href = 'regist.php'>アカウント登録</a>";

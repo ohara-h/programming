@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+$auth = $_SESSION['auth'];
+
+if(!isset($auth)){
+    header("Location:login.php");
+}
+
 mb_internal_encoding("utf8");
 
 error_reporting(E_ALL);
@@ -47,13 +54,6 @@ set_error_handler("customErrorHandler");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
-session_start();
-$auth = $_SESSION['auth'];
-
-if(!isset($auth)){
-    header("Location:login.php");
-}
- 
 if($auth == 1){
     $regist = "<a href = 'regist.php'>アカウント登録</a>";
     $list = "<a href = 'list.php'>アカウント一覧</a>";

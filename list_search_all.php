@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+$auth = $_SESSION['auth'];
+
+if(!isset($auth)){
+    header("Location:login.php");
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors',0);
 

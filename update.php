@@ -1,58 +1,16 @@
 <?php
 
-mb_internal_encoding("utf8");
-
-error_reporting(E_ALL);
-ini_set('display_errors',0);
-
-$dsn='mysql:dbname=lesson1; host=localhost';
-$user='root';
-$password='';
-
-$date=date('y-m-d');
-
-try{
-    $dbh= new PDO($dsn,$user,$password);
-        
-    if($dbh == null){
-        print('接続に失敗しました。<br>');
-    }else{
-        print('');
-    }
-}catch(Exception $e){
-    print"<font color='red'>エラーが発生したためアカウント更新できません。</font>";
-}
-
-register_shutdown_function(function(){
-    $error = error_get_last();
-    if($error !== null && $error['type'] === E_ERROR){
-        print"<font color='red'>エラーが発生したためアカウント更新できません。</font>";
-        $error['message'];
-    }
-});
-
-function customErrorHandler($errno,$errstr){
-    switch($errno){
-        case E_WARNING:
-            die("<font color='red'>エラーが発生したためアカウント更新できません。</font>");
-            break;
-            
-        case E_NOTICE:
-            die("<font color='red'>エラーが発生したためアカウント更新できません。</font>");
-            break;
-    }
-}
-
-set_error_handler("customErrorHandler");
-
-$pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
-
 session_start();
 $auth = $_SESSION['auth'];
 
 if(!isset($auth)){
     header("Location:login.php");
 }
+
+mb_internal_encoding("utf8");
+
+
+$pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
 
 if($auth == 1){
     $regist = "<a href = 'regist.php'>アカウント登録</a>";
@@ -77,7 +35,7 @@ $stmt->execute([$accountid]);
 <html lang = "ja">
     <head>
         <meta charset="utf-8">
-        <title>アカウント登録</title>
+        <title>アカウント更新</title>
         <style>
             .pass{
                 -webkit-text-security:disc;
@@ -102,7 +60,7 @@ $stmt->execute([$accountid]);
             </div>
         </header>
         
-        <div id ="title">アカウント登録画面</div>
+        <div id ="title">アカウント更新画面</div>
         
         <p id="authmsg"></p>
         
@@ -117,10 +75,88 @@ $stmt->execute([$accountid]);
                             exit();
                         } 
                         
+                        if(isset($_POST['back'])){
+                            $familyname = $_POST['family_name'];
+                            $lastname = $_POST['last_name'];
+                            $familynamekana = $_POST['family_name_kana'];
+                            $lastnamekana = $_POST['last_name_kana'];
+                            $password = $_POST['password'];
+                            $mail = $_POST['mail'];
+                            $postalcode = $_POST['postal_code'];
+                            $address1 = $_POST['address_1'];
+                            $address2 = $_POST['address_2']; 
+                            
+                            $hkdcheck=($_POST['prefecture'] =='北海道')?'selected':'';
+                        $amrcheck=($_POST['prefecture'] =='青森県')?'selected':'';
+                        $iwtcheck=($_POST['prefecture'] =='岩手県')?'selected':'';
+                        $mygcheck=($_POST['prefecture'] =='宮城県')?'selected':'';
+                        $aktcheck=($_POST['prefecture'] =='秋田県')?'selected':'';
+                        $ymgtcheck=($_POST['prefecture'] =='山形県')?'selected':'';
+                        $hksmcheck=($_POST['prefecture'] =='福島県')?'selected':'';
+                        $ibrkcheck=($_POST['prefecture'] =='茨城県')?'selected':'';
+                        $ttgcheck=($_POST['prefecture'] =='栃木県')?'selected':'';
+                        $gnmcheck=($_POST['prefecture'] =='群馬県')?'selected':'';
+                        $sitmcheck=($_POST['prefecture'] =='埼玉県')?'selected':'';
+                        $tbcheck=($_POST['prefecture'] =='千葉県')?'selected':'';
+                        $tktcheck=($_POST['prefecture'] =='東京都')?'selected':'';
+                        $kngwcheck=($_POST['prefecture'] =='神奈川県')?'selected':'';
+                        $nigtcheck=($_POST['prefecture'] =='新潟県')?'selected':'';
+                        $tymcheck=($_POST['prefecture'] =='富山県')?'selected':'';
+                        $iskwcheck=($_POST['prefecture'] =='石川県')?'selected':'';
+                        $hkicheck=($_POST['prefecture'] =='福井県')?'selected':'';
+                        $ymnscheck=($_POST['prefecture'] =='山梨県')?'selected':'';
+                        $ngncheck=($_POST['prefecture'] =='長野県')?'selected':'';
+                        $gfcheck=($_POST['prefecture'] =='岐阜県')?'selected':'';
+                        $szokcheck=($_POST['prefecture'] =='静岡県')?'selected':'';
+                        $aitcheck=($_POST['prefecture'] =='愛知県')?'selected':'';
+                        $mecheck=($_POST['prefecture'] =='三重県')?'selected':'';
+                        $sgcheck=($_POST['prefecture'] =='滋賀県')?'selected':'';
+                        $kytcheck=($_POST['prefecture'] =='京都府')?'selected':'';
+                        $oskcheck=($_POST['prefecture'] =='大阪府')?'selected':'';
+                        $hygcheck=($_POST['prefecture'] =='兵庫県')?'selected':'';
+                        $nrcheck=($_POST['prefecture'] =='奈良県')?'selected':'';
+                        $wkymcheck=($_POST['prefecture'] =='和歌山県')?'selected':'';
+                        $ttrcheck=($_POST['prefecture'] =='鳥取県')?'selected':'';
+                        $smncheck=($_POST['prefecture'] =='島根県')?'selected':'';
+                        $okymcheck=($_POST['prefecture'] =='岡山県')?'selected':'';
+                        $hrsmcheck=($_POST['prefecture'] =='広島県')?'selected':'';
+                        $ymgticheck=($_POST['prefecture'] =='山口県')?'selected':'';
+                        $tksmcheck=($_POST['prefecture'] =='徳島県')?'selected':'';
+                        $kgwcheck=($_POST['prefecture'] =='香川県')?'selected':'';
+                        $ehmcheck=($_POST['prefecture'] =='愛媛県')?'selected':'';
+                        $kutcheck=($_POST['prefecture'] =='高知県')?'selected':'';
+                        $hkokcheck=($_POST['prefecture'] =='福岡県')?'selected':'';
+                        $sgcheck=($_POST['prefecture'] =='佐賀県')?'selected':'';
+                        $ngskcheck=($_POST['prefecture'] =='長崎県')?'selected':'';
+                        $kmmtcheck=($_POST['prefecture'] =='熊本県')?'selected':'';
+                        $oitcheck=($_POST['prefecture'] =='大分県')?'selected':'';
+                        $myzkcheck=($_POST['prefecture'] =='宮崎県')?'selected':'';
+                        $kgsmcheck=($_POST['prefecture'] =='鹿児島県')?'selected':'';
+                        $oknwcheck=($_POST['prefecture'] =='沖縄県')?'selected':'';
+                        
+                        if($_POST['gender'] == 0){
+                            $gendermale="checked";
+                            $genderfemale="";
+                        }else{
+                            $gendermale="";
+                            $genderfemale="checked";
+                        }
+            
+                        if($_POST['authority'] == 0){
+                            $authorityg="selected";
+                            $authoritym="";
+                        }else{
+                            $authorityg="";
+                            $authoritym="selected";
+                        }
+                            
+                        }else{
+                        
                         $familyname = $row['family_name'];
                         $lastname = $row['last_name'];
                         $familynamekana = $row['family_name_kana'];
                         $lastnamekana = $row['last_name_kana'];
+                        $password = "";
                         $mail = $row['mail'];
                         $postalcode = $row['postal_code'];
                         $address1 = $row['address_1'];
@@ -189,6 +225,7 @@ $stmt->execute([$accountid]);
                             $authorityg="";
                             $authoritym="selected";
                         }
+                        }
                     }
                 ?>
                 
@@ -233,7 +270,7 @@ $stmt->execute([$accountid]);
             
             <div>
                 <label>パスワード</label>
-                <div id='left'><input type='text' class='pass' maxlength='10' pattern='^[a-zA-Z0-9]+$' name='password'></div>
+                <div id='left'><input type='text' class='pass' maxlength='10' pattern='^[a-zA-Z0-9]+$' value="<?php echo $password; ?>" name='password'></div>
                 <div id="pass">未入力の場合、パスワードは更新されません。</div>
             </div>
                 

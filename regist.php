@@ -30,6 +30,11 @@ $regist_con = "regist_confirm.php";
         <meta charset="utf-8">
         <title>アカウント登録</title>
         <link rel ="stylesheet" type="text/css" href="regist.css">
+        <style>
+            .pass{
+                -webkit-text-security:disc;
+            }
+        </style>
     </head>
     
     <body>
@@ -95,7 +100,7 @@ $regist_con = "regist_confirm.php";
             
             <div>
                 <label>パスワード</label>
-                <div id="left"><input type="password" class="text" maxlength="10" pattern="^[a-zA-Z0-9]+$" name="password"></div>
+                <div id="left"><input type="text" class="pass" maxlength="10" pattern="^[a-zA-Z0-9]+$" name="password"></div>
                 <div id="err6"></div>
             </div>
                 

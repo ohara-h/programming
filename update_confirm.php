@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+$auth = $_SESSION['auth'];
+
+if(!isset($auth)){
+    header("Location:login.php");
+}
+
 mb_internal_encoding("utf8");
 
 $pdo=new PDO("mysql:dbname=lesson1; host=localhost;","root","");
@@ -47,13 +54,6 @@ function customErrorHandler($errno,$errstr){
 
 set_error_handler("customErrorHandler");
 
-session_start();
-$auth = $_SESSION['auth'];
-
-if(!isset($auth)){
-    header("Location:login.php");
-}
- 
 if($auth == 1){
     $regist = "<a href = 'regist.php'>アカウント登録</a>";
     $list = "<a href = 'list.php'>アカウント一覧</a>";
@@ -63,7 +63,6 @@ if($auth == 1){
 }
 
 $top = "<a href = 'diblog.php'>トップ</a>";
-$update = "update.php";
 $update_com = "update_complete.php";
 
 $accountid = $_POST['number'];
@@ -168,8 +167,22 @@ $stmt->execute([$accountid]);
             }
         ?>
         
-        <form method="post" action="<?php echo $update; ?>">
-            <button type="button" onClick=history.back() class="submit">前に戻る</button>
+        <form method="post" action="update.php">
+            <input type="submit" class="submit" value="前に戻る">
+            <input type="hidden" value="<?php echo $_POST['family_name']; ?>" name="family_name">
+            <input type="hidden" value="<?php echo $_POST['last_name']; ?>" name="last_name">
+            <input type="hidden" value="<?php echo $_POST['family_name_kana']; ?>" name="family_name_kana">
+            <input type="hidden" value="<?php echo $_POST['last_name_kana']; ?>" name="last_name_kana">
+            <input type="hidden" value="<?php echo $_POST['mail']; ?>" name="mail">
+            <input type="hidden" value="<?php echo $_POST['password']; ?>" name="password">
+            <input type="hidden" value="<?php echo $_POST['gender']; ?>" name="gender">
+            <input type="hidden" value="<?php echo $_POST['postal_code']; ?>" name="postal_code">
+            <input type="hidden" value="<?php echo $_POST['prefecture']; ?>" name="prefecture">
+            <input type="hidden" value="<?php echo $_POST['address_1']; ?>" name="address_1">
+            <input type="hidden" value="<?php echo $_POST['address_2']; ?>" name="address_2">
+            <input type="hidden" value="<?php echo $_POST['authority']; ?>" name="authority">
+            <input type="hidden" value="back" name="back">
+            <input type="hidden" name="number" value="<?php echo $accountid; ?>">
         </form>
         
         <form method="post" action="<?php echo $update_com; ?>">

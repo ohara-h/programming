@@ -56,6 +56,10 @@ if($stmt->rowcount() > 0){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if(password_verify($password,$row['password'])){
         $auth = $row['authority'];
+        if($row['delete_flag'] == 1){
+            echo "<font color='red'>このアカウントは削除されています。</font>";
+            die();
+        }
         session_start();
         $_SESSION['auth'] = $auth;
         
